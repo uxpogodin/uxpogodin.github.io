@@ -28,11 +28,13 @@ import depositErrorImg     from "figma:asset/a8a92b9e029bd5e181a29eb0831777f5b56
 import depositPendingImg   from "figma:asset/57835501509044ca7ac5d6876e0b425a30485088.png";
 import adminPanelImg       from "figma:asset/dbacf092a7938454d0067ca417c46cd167738078.png";
 import analyticsMockupImg  from "figma:asset/30e8f6cd72fde783a84141503c9ea44673d97877.png";
-import paypalCompetitorImg from "figma:asset/f2b3414e3ea34f14b90658030f51943a3630bcf3.png";
+import xbetCompetitorImg   from "figma:asset/8e0535986399de70543eb43175ce28635b44e248.png";
+import winCompetitorImg    from "figma:asset/f82c29d1ec066414e954472f1c00549b515d62b3.png";
 
 // Lookup map for competitor images that must be imported as figma:asset in .tsx
 const COMPETITOR_IMG_MAP: Record<string, string> = {
-  "__figma:paypal-competitor__": paypalCompetitorImg,
+  "__figma:1xbet-competitor__": xbetCompetitorImg,
+  "__figma:1win-competitor__":  winCompetitorImg,
 };
 const resolveCompetitorImg = (image: string): string =>
   COMPETITOR_IMG_MAP[image] ?? image;

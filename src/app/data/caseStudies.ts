@@ -248,7 +248,7 @@ const paymentFlow: FullCaseStudy = {
       competitors: [
         {
           name: "1xbet",
-          image: "https://images.unsplash.com/photo-1533234944761-2f5337579079?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBiYW5raW5nJTIwYXBwJTIwZGVwb3NpdCUyMHNjcmVlbnxlbnwxfHx8fDE3NzI5NzMzMjZ8MA&ixlib=rb-4.1.0&q=80&w=400",
+          image: "__figma:1xbet-competitor__",
           observation: {
             en: "1xbet groups payment methods by type, so the user can quickly find and select the one they need. This reduces time-to-decision and can directly improve CR to Deposit.",
             ru: "1xbet группирует методы оплаты по типу - пользователь быстро находит нужный и не тратит время на сканирование всего списка. Это сокращает время принятия решения и может напрямую влиять на CR to Deposit.",
@@ -259,8 +259,8 @@ const paymentFlow: FullCaseStudy = {
           },
         },
         {
-          name: "PayPal",
-          image: "__figma:paypal-competitor__",
+          name: "1win",
+          image: "__figma:1win-competitor__",
           observation: {
             en: "Quick-select amount buttons are available alongside the input field, letting the user fill in a common amount with a single tap instead of typing.",
             ru: "Присутствует возможность быстро выбрать сумму кнопками - пользователь может заполнить поле одним нажатием, не вводя цифры вручную.",

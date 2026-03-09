@@ -22,6 +22,21 @@ export function RootLayout() {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [location.pathname]);
 
+  // ── Document title & meta description ───────────────────────────────────────
+  useEffect(() => {
+    document.title = "Yury Pogodin - Product Designer";
+    let meta = document.querySelector<HTMLMetaElement>("meta[name='description']");
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.name = "description";
+      document.head.appendChild(meta);
+    }
+    meta.content =
+      lang === "en"
+        ? "Portfolio of Yury Pogodin - product designer specialising in complex interfaces, SaaS products and mobile apps."
+        : "Портфолио Юрия Погодина - продуктовый дизайнер, специализируюсь на сложных интерфейсах, SaaS-продуктах и мобильных приложениях.";
+  }, [lang]);
+
   // ── Eased smooth scroll (replaces Lenis) ────────────────────────────────────
   const scrollTo = useCallback((id: string) => {
     const el = document.getElementById(id);

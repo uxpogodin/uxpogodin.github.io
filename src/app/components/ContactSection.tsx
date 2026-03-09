@@ -45,40 +45,6 @@ export function ContactSection({ lang }: { lang: "en" | "ru" }) {
     >
       <div className="section-inner">
 
-        {/* Label + sub row */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease }}
-          className="contact-header"
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "16px",
-            marginBottom: "64px",
-          }}
-        >
-          {/* Label */}
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <span style={{
-              display: "block", width: "24px", height: "1px",
-              background: textColor.accent, opacity: 0.7, flexShrink: 0,
-            }} />
-            <span style={{
-              ...preset.micro,
-              fontWeight: weight.regular,
-              letterSpacing: tracking.wider,
-              textTransform: "uppercase",
-              color: textColor.muted,
-            }}>
-              {t.label}
-            </span>
-          </div>
-        </motion.div>
-
         {/* ── Full-width email ── */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}

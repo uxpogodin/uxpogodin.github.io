@@ -37,6 +37,15 @@ import paperCompetitorImg      from "figma:asset/5843e2bf1dc8e29d1dd1f5e892df3cd
 import colorPaletteResearchImg from "figma:asset/1e6125d01b3b69de96d4337b627db5909025e001.png";
 import vedWireframeImg         from "figma:asset/960b7abecee79f0a4d567fe1caba894d4ce79bad.png";
 import vedVideoSectionImg      from "figma:asset/2dd9c99a6e0791c0fd6bd6d76f707e2c1eadb622.png";
+import vedReelsPlayerImg       from "figma:asset/af772b4c0280bcf1c7f7f3f02af096e57400e299.png";
+import vedNewsArticleImg       from "figma:asset/85c83148e8e504907bfe4b9ed9de83c4194155f5.png";
+import vedNewsNoCoverImg       from "figma:asset/309f578181caa449070c3a79fb41b2a29ef4ef38.png";
+import vedLaunchKiosk1Img     from "figma:asset/1a9a5cfe22d88376ebea782820b5eb47a363e5a5.png";
+import vedLaunchBannerImg     from "figma:asset/57501c73238ccbf1b36e7a37cfe0d10a3f500fed.png";
+import vedLaunchKiosk2Img     from "figma:asset/4ba070f103fa70b2e241f7f2475f104fba689737.png";
+import vedErrorEmptyImg        from "figma:asset/6a64f0adaec6c6e53def2af3c744d88e0a24e7ad.png";
+import vedError404Img          from "figma:asset/5d18d7c8821b2f5ea4093d5b357e1897b43c8fb6.png";
+import vedError500Img          from "figma:asset/da2cc5f2cd3ca300d8cab1bf91f841f7df202dbd.png";
 
 // Lookup map for competitor images that must be imported as figma:asset in .tsx
 const COMPETITOR_IMG_MAP: Record<string, string> = {
@@ -554,7 +563,7 @@ function DepositStatusSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: 
           style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, maxWidth: "620px", margin: 0 }}
         >
           {lang === "en"
-            ? "Fully redesigned the status screens (Success, Error, Processing). Structured the information on each screen, added a transaction ID so users can contact support if needed. Introduced a user feedback module. Added copy buttons next to data users frequently need. Reworked the primary action on each screen — for example, the Success screen features a 'Go Play' CTA that brings the user back to their flow."
+            ? "Fully redesigned the status screens (Success, Error, Processing). Structured the information on each screen, added a transaction ID so users can contact support if needed. Introduced a user feedback module. Added copy buttons next to data users frequently need. Reworked the primary action on each screen - for example, the Success screen features a 'Go Play' CTA that brings the user back to their flow."
             : "Полностью переработал экраны статусов (Успех, Ошибка, Обработка). На экране систематизирована информация, добавлен номер транзакции, с которым пользователь может обратиться в техническую поддержку. Добавлен сбор фидбека пользователей. Добавлены кнопки \"копировать\" рядом с данными, которые часто необходимы юзеру. Переработано целевое действие на экранах. Например, на экране успеха отображается CTA кнопка \"Go play\", которая ведёт пользователя обратно к нужному ему флоу."}
         </motion.p>
       </div>
@@ -642,7 +651,7 @@ function AdminPanelSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: rea
       >
         <img
           src={adminPanelImg}
-          alt={lang === "en" ? "Admin panel — offer configuration screens" : "Админ-панель �� экраны настройки офферов"}
+          alt={lang === "en" ? "Admin panel - offer configuration screens" : "Админ-панель - экраны настройки офферов"}
           style={{ width: "100%", display: "block" }}
         />
       </motion.div>
@@ -956,19 +965,6 @@ function WidgetConfigMockup() {
 
 // ── Analytics Dashboard showcase sections ────────────────────────────────────
 function AnalyticsDashboardSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: readonly number[] }) {
-  const points = lang === "en"
-    ? [
-        { label: "Category filters",        desc: "Horizontal pill bar — Markets, Crypto, Life, AI — narrows the feed without leaving the screen." },
-        { label: "Two-column card grid",     desc: "Video thumbnails fill the viewport edge-to-edge with an inline play overlay so users stay in the feed." },
-        { label: "Breaking news strip",      desc: "A pinned card at the top surfaces the most urgent story with a timestamp, bridging editorial and algorithmic content." },
-        { label: "Bottom tab navigation",    desc: "Switches between Video, News and Longreads instantly without resetting scroll position in any section." },
-      ]
-    : [
-        { label: "Фильтры по категориям",    desc: "Горизонтальная панель — $$$, Крипта, Life, AI — сужает ленту без смены экрана." },
-        { label: "Двухколоночная сетка",     desc: "Карточки с превью видео заполняют вьюпорт, инлайн-плеер удерживает пользователя в ленте." },
-        { label: "Стрип срочных новостей",   desc: "Закреплённая карточка вверху выводит самый актуальный материал с таймстэмпом." },
-        { label: "Нижняя навигация",         desc: "Переключение между Видео, Новостями и Лонгридами без потери позиции скролла." },
-      ];
 
   return (
     <div className="section-inner">
@@ -997,24 +993,9 @@ function AnalyticsDashboardSection({ lang, ease: _ease }: { lang: "en" | "ru"; e
             style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: "0 0 36px" }}
           >
             {lang === "en"
-              ? "The video section is the primary entry point for media content. The design prioritises quick browsing and instant playback, keeping users in the feed."
-              : "Раздел видео — основная точка входа в медиаконтент. Дизайн сделан так, чтобы пользователь быстро находил нужное и запускал воспроизведение, не покидая ленту."}
+              ? "The video section is the primary entry point for media content. A horizontal pill bar filters by category - Markets, Crypto, Life, AI - without leaving the screen. A two-column card grid fills the viewport edge-to-edge with inline playback, while a pinned breaking news strip surfaces the most urgent story at the top. Bottom tab navigation switches between Video, News and Longreads instantly without resetting scroll position."
+              : "Раздел видео - основная точка входа на сайт. Горизонтальная панель фильтрует по категориям без смены экрана. Двухколоночная сетка заполняет вьюпорт, видео открывается в оверлее и пользователь остаётся в ленте."}
           </motion.p>
-
-          {/* Feature list */}
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            {points.map((pt, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }} transition={{ duration: 0.45, delay: 0.1 + i * 0.07, ease: _ease as number[] }}
-                style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "16px 0 16px 16px", borderLeft: "2px solid rgba(139,92,246,0.3)" }}
-              >
-                <div style={{ ...preset.small, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 5px" }}>{pt.label}</div>
-                <div style={{ ...preset.small, color: textColor.secondary, lineHeight: leading.loose, margin: 0 }}>{pt.desc}</div>
-              </motion.div>
-            ))}
-          </div>
         </div>
 
         {/* Right: mobile screenshot */}
@@ -1057,7 +1038,311 @@ function AnalyticsDashboardSection({ lang, ease: _ease }: { lang: "en" | "ru"; e
   );
 }
 
-// ��тов модульной drag-and-drop системой. Три уровня значимости — Hero, Standard, Compact — создают мгновенную визуальную иерархию. Теперь пользователи считывают дашборд за 5 секунд и находят нужную метрику без прокрутки."}
+function ReelsPlayerSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: readonly number[] }) {
+  return (
+    <div className="section-inner">
+      <div className="fd-reels-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "72px", alignItems: "center" }}>
+
+        {/* Left: mobile screenshot */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.75, ease: _ease as number[], delay: 0.12 }}
+          style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        >
+          <div style={{
+            position: "relative",
+            maxWidth: "280px",
+            width: "100%",
+            borderRadius: "36px",
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.1)",
+            boxShadow: "0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04), 0 0 60px rgba(139,92,246,0.10)",
+            background: "#0a0a0f",
+          }}>
+            <div style={{ height: "14px", background: "#0a0a0f", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: "8px" }}>
+              <div style={{ width: "72px", height: "4px", borderRadius: "2px", background: "rgba(255,255,255,0.1)" }} />
+            </div>
+            <img
+              src={vedReelsPlayerImg}
+              alt={lang === "en" ? "Reels Player" : "Reels-плеер"}
+              style={{ width: "100%", display: "block" }}
+            />
+            <div style={{ height: "22px", background: "#0a0a0f", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ width: "100px", height: "4px", borderRadius: "2px", background: "rgba(255,255,255,0.1)" }} />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Right: text */}
+        <div>
+          <motion.div
+            initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.5, ease: _ease as number[] }}
+            style={{ ...preset.nano, color: "rgba(139,92,246,0.7)", letterSpacing: tracking.wider, textTransform: "uppercase" as const, marginBottom: "14px" }}
+          >
+            {lang === "en" ? "Section 02" : "Раздел 02"}
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6, ease: _ease as number[] }}
+            style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 16px" }}
+          >
+            {lang === "en" ? "Reels Player" : "Reels-плеер"}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.55, ease: _ease as number[], delay: 0.08 }}
+            style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: 0 }}
+          >
+            {lang === "en"
+              ? "A fullscreen vertical player inspired by short-form video formats. The layout keeps editorial context visible - author, tag and headline overlay the bottom of the frame - while playback controls stay minimal and out of the way."
+              : "Полноэкранный вертикальный плеер в стиле Reels/Shorts. Автор, тег и заголовок overlay поверх нижней части кадра, элементы управления минимальны и не отвлекают."}
+          </motion.p>
+        </div>
+
+      </div>
+      <style>{`
+        @media(max-width:768px){
+          #analytics-dashboard-reels .fd-reels-col { grid-template-columns: 1fr !important; gap: 48px !important; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+function NewsArticleSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: readonly number[] }) {
+  return (
+    <div className="section-inner">
+      <div className="fd-news-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "72px", alignItems: "center" }}>
+
+        {/* Left: text */}
+        <div>
+          <motion.div
+            initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.5, ease: _ease as number[] }}
+            style={{ ...preset.nano, color: "rgba(139,92,246,0.7)", letterSpacing: tracking.wider, textTransform: "uppercase" as const, marginBottom: "14px" }}
+          >
+            {lang === "en" ? "Section 03" : "Раздел 03"}
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6, ease: _ease as number[] }}
+            style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 16px" }}
+          >
+            {lang === "en" ? "News Article" : "Страница новости"}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.55, ease: _ease as number[], delay: 0.08 }}
+            style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: 0 }}
+          >
+            {lang === "en"
+              ? "The article page leads with a full-width editorial image, followed by a bold headline and byline with a timestamp. Reaction and share controls sit directly below, keeping social engagement within reach before the reader scrolls into the body text."
+              : "Страница статьи начинается с большого фото, затем идут заголовок и имя автора с датой публикации. Реакции и кнопка «Поделиться» размещены сразу под шапкой - чтобы читатель мог взаимодействовать с материалом ещё до начала чтения."}
+          </motion.p>
+        </div>
+
+        {/* Right: mobile screenshot */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.75, ease: _ease as number[], delay: 0.12 }}
+          style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        >
+          <div style={{
+            position: "relative",
+            maxWidth: "280px",
+            width: "100%",
+            borderRadius: "36px",
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.1)",
+            boxShadow: "0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04), 0 0 60px rgba(139,92,246,0.10)",
+            background: "#0a0a0f",
+          }}>
+            <div style={{ height: "14px", background: "#0a0a0f", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: "8px" }}>
+              <div style={{ width: "72px", height: "4px", borderRadius: "2px", background: "rgba(255,255,255,0.1)" }} />
+            </div>
+            <img
+              src={vedNewsArticleImg}
+              alt={lang === "en" ? "News article page" : "Страница новости"}
+              style={{ width: "100%", display: "block" }}
+            />
+            <div style={{ height: "22px", background: "#0a0a0f", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ width: "100px", height: "4px", borderRadius: "2px", background: "rgba(255,255,255,0.1)" }} />
+            </div>
+          </div>
+        </motion.div>
+
+      </div>
+      <style>{`
+        @media(max-width:768px){
+          #analytics-dashboard-news .fd-news-col { grid-template-columns: 1fr !important; gap: 48px !important; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+function NewsNoCoverSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: readonly number[] }) {
+  return (
+    <div className="section-inner">
+      <div className="fd-nocover-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "72px", alignItems: "center" }}>
+
+        {/* Left: mobile screenshot */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.75, ease: _ease as number[], delay: 0.12 }}
+          style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        >
+          <div style={{
+            position: "relative",
+            maxWidth: "280px",
+            width: "100%",
+            borderRadius: "36px",
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.1)",
+            boxShadow: "0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04), 0 0 60px rgba(139,92,246,0.10)",
+            background: "#0a0a0f",
+          }}>
+            <div style={{ height: "14px", background: "#0a0a0f", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: "8px" }}>
+              <div style={{ width: "72px", height: "4px", borderRadius: "2px", background: "rgba(255,255,255,0.1)" }} />
+            </div>
+            <img
+              src={vedNewsNoCoverImg}
+              alt={lang === "en" ? "News article without cover" : "Новость без обложки"}
+              style={{ width: "100%", display: "block" }}
+            />
+            <div style={{ height: "22px", background: "#0a0a0f", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ width: "100px", height: "4px", borderRadius: "2px", background: "rgba(255,255,255,0.1)" }} />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Right: text */}
+        <div>
+          <motion.div
+            initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.5, ease: _ease as number[] }}
+            style={{ ...preset.nano, color: "rgba(139,92,246,0.7)", letterSpacing: tracking.wider, textTransform: "uppercase" as const, marginBottom: "14px" }}
+          >
+            {lang === "en" ? "Section 04" : "Раздел 04"}
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6, ease: _ease as number[] }}
+            style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 16px" }}
+          >
+            {lang === "en" ? "Article Without Cover" : "Новость без обложки"}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.55, ease: _ease as number[], delay: 0.08 }}
+            style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: 0 }}
+          >
+            {lang === "en"
+              ? "When there is no editorial image, the article opens directly with a bold headline and byline. The first paragraph surfaces immediately, reducing friction for text-first stories. An inline image with a caption appears mid-body, keeping the reading flow intact."
+              : "Размер шрифта в теле статьи - 21px. Это выше стандартного: крупный кегль снижает нагрузку на глаза и улучшает читаемость длинных материалов."}
+          </motion.p>
+        </div>
+
+      </div>
+      <style>{`
+        @media(max-width:768px){
+          #analytics-dashboard-nocover .fd-nocover-col { grid-template-columns: 1fr !important; gap: 48px !important; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+function ErrorStatesSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: readonly number[] }) {
+  const screens = [
+    {
+      img: vedErrorEmptyImg,
+      label: lang === "en" ? "Empty state" : "Нет контента",
+    },
+    {
+      img: vedError404Img,
+      label: "404",
+    },
+    {
+      img: vedError500Img,
+      label: "500",
+    },
+  ];
+
+  return (
+    <div className="section-inner">
+      {/* Header text */}
+      <motion.div
+        initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }} transition={{ duration: 0.5, ease: _ease as number[] }}
+        style={{ ...preset.nano, color: "rgba(139,92,246,0.7)", letterSpacing: tracking.wider, textTransform: "uppercase" as const, marginBottom: "14px", textAlign: "center" }}
+      >
+        {lang === "en" ? "Section 05" : "Раздел 05"}
+      </motion.div>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }} transition={{ duration: 0.6, ease: _ease as number[] }}
+        style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 16px", textAlign: "center" }}
+      >
+        {lang === "en" ? "Error States" : "Состояния ошибок"}
+      </motion.h2>
+      <motion.p
+        initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }} transition={{ duration: 0.55, ease: _ease as number[], delay: 0.08 }}
+        style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: "0 auto 56px", maxWidth: "560px", textAlign: "center" }}
+      >
+        {lang === "en"
+          ? "Each failure scenario has a dedicated illustration featuring the app mascot. Empty categories, missing pages and server errors each deliver a clear message with a calm, on-brand visual so the reader is never left confused."
+          : "Для каждого сбоя предусмотрена отдельная иллюстрация с маскотом приложения. Пустые рубрики, отсутствующие страницы и серверные ошибки сопровождаются понятным сообщением в едином визуальном стиле."}
+      </motion.p>
+
+      {/* Three screens */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "32px", alignItems: "end" }} className="ved-errors-grid">
+        {screens.map((screen, i) => (
+          <motion.div
+            key={screen.label}
+            initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: _ease as number[], delay: i * 0.1 }}
+            style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "20px" }}
+          >
+            <div style={{
+              width: "100%",
+              maxWidth: "240px",
+              borderRadius: "32px",
+              overflow: "hidden",
+              border: "1px solid rgba(255,255,255,0.1)",
+              boxShadow: "0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04), 0 0 48px rgba(139,92,246,0.08)",
+              background: "#0a0a0f",
+              margin: "0 auto",
+            }}>
+              <div style={{ height: "12px", background: "#0a0a0f", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: "8px" }}>
+                <div style={{ width: "60px", height: "4px", borderRadius: "2px", background: "rgba(255,255,255,0.1)" }} />
+              </div>
+              <img src={screen.img} alt={screen.label} style={{ width: "100%", display: "block" }} />
+              <div style={{ height: "18px", background: "#0a0a0f", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ width: "80px", height: "4px", borderRadius: "2px", background: "rgba(255,255,255,0.1)" }} />
+              </div>
+            </div>
+            <span style={{ ...preset.small, color: textColor.muted, letterSpacing: tracking.wide }}>
+              {screen.label}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+
+      <style>{`
+        @media(max-width:768px){
+          .ved-errors-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+        }
+        @media(max-width:1024px) and (min-width:769px){
+          .ved-errors-grid { gap: 20px !important; }
+        }
+      `}</style>
+    </div>
+  );
+}
 
 function AnalyticsKPISection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: readonly number[] }) {
   return (
@@ -1077,8 +1362,8 @@ function AnalyticsKPISection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: r
             style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: 0 }}
           >
             {lang === "en"
-              ? "The Hero widget was redesigned from a bare number into a contextual card: current value, delta vs. previous period, a sparkline trend, and a colour-coded status dot. At-a-glance diagnosis replaces manual comparison — the metric tells its own story."
-              : "Hero-виджет переработан из числа в контекстную карточку: текущее значение, дельта к прошлому периоду, спарклайн-тренд и цветовой индикатор статуса. Моментальная диагностика — метрика рассказывает свою историю без пояснений."}
+              ? "The Hero widget was redesigned from a bare number into a contextual card: current value, delta vs. previous period, a sparkline trend, and a colour-coded status dot. At-a-glance diagnosis replaces manual comparison - the metric tells its own story."
+              : "Hero-виджет переработан из числа в контекстную карточку: текущее значение, дельта к прошлому периоду, спарклайн-тренд и цветовой индикатор статуса. Моментальная диагностика - метрика рассказывает свою историю без пояснений."}
           </motion.p>
         </div>
         <motion.div
@@ -1119,8 +1404,8 @@ function AnalyticsFiltersSection({ lang, ease: _ease }: { lang: "en" | "ru"; eas
             style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: 0 }}
           >
             {lang === "en"
-              ? "The global filter bar was replaced with per-widget controls. Each chart carries its own date range, segment selector, and compare toggle — eliminating the #1 source of frustration from FullStory analysis and enabling cross-period comparison in a single view."
-              : "Глобальная панель фильтров заменена элементами управления на уровне виджета. У каждого графика свой диапазон дат, выбор сегмента и переключатель сравнения — устраняет главную боль из анализа FullStory и позволяет сравнивать периоды в одном виде."}
+              ? "The global filter bar was replaced with per-widget controls. Each chart carries its own date range, segment selector, and compare toggle - eliminating the #1 source of frustration from FullStory analysis and enabling cross-period comparison in a single view."
+              : "Глобальная панель фильтров заменена элементами управления на уровне виджета. У каждого графика свой диапазон дат, выбор сегмента и переключатель сравнения - устраняет главную боль из анализа FullStory и позволяет сравнивать периоды в одном виде."}
           </motion.p>
         </div>
         <motion.div
@@ -1148,20 +1433,20 @@ function AnalyticsStateSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease:
     {
       variant: "loaded"  as const, color: "#22c55e",
       headingEn: "Data loaded",    headingRu: "Данные загружены",
-      descEn: "When all widgets load cleanly, each metric block animates in sequentially — directing focus from the top-left Hero KPI to supporting Standard and Compact charts below.",
-      descRu: "При успешной загрузке все блоки анимируются последовательно — направляя взгляд от Hero KPI к поддерживающим графикам Standard и Compact.",
+      descEn: "When all widgets load cleanly, each metric block animates in sequentially - directing focus from the top-left Hero KPI to supporting Standard and Compact charts below.",
+      descRu: "При успешной загрузке все блоки анимируются последовательно - направляя взгляд от Hero KPI к поддерживающим графикам Standard и Compact.",
     },
     {
       variant: "error"   as const, color: "#ef4444",
       headingEn: "Partial failure", headingRu: "Частичная ошибка",
-      descEn: "If a single data source fails, only that widget shows an error — not the whole dashboard. An inline retry CTA lets users refresh one widget without losing the rest of their view.",
+      descEn: "If a single data source fails, only that widget shows an error - not the whole dashboard. An inline retry CTA lets users refresh one widget without losing the rest of their view.",
       descRu: "При сбое одного источника ошибка показывается только в этом виджете. Встроенный retry позволяет обновить один блок, не теряя остальных данных.",
     },
     {
       variant: "loading" as const, color: "#6366f1",
       headingEn: "Loading state",   headingRu: "Состояние загрузки",
       descEn: "Skeleton placeholders match each widget's exact dimensions, preventing layout shift. A subtle shimmer signals live fetching without blocking widgets that have already loaded.",
-      descRu: "Скелетоны совпадают с точными размерами каждого виджета — нет сдвига макета. Тонкая shimmer-анимация не блокирует виджеты, уже загрузившие данные.",
+      descRu: "Скелетоны совпадают с точными размерами каждого виджета - нет сдвига макета. Тонкая shimmer-анимация не блокирует виджеты, уже загрузившие данные.",
     },
   ] as const;
   return (
@@ -1180,8 +1465,8 @@ function AnalyticsStateSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease:
           style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, maxWidth: "620px", margin: 0 }}
         >
           {lang === "en"
-            ? "Every dashboard view resolves into one of three states: fully loaded, partially failed, or loading. Each required a distinct visual language — accurate messaging and an action that keeps the analyst moving forward."
-            : "Каждый вид дашборда разрешается в одно из трёх состояний: загружен, частичная ошибка или загрузка. Каждое требовало отдельного визуального языка — точного сообщения и действия, удерживающего аналитика в ра��оте."}
+            ? "Every dashboard view resolves into one of three states: fully loaded, partially failed, or loading. Each required a distinct visual language - accurate messaging and an action that keeps the analyst moving forward."
+            : "Каждый вид дашборда разрешается в одно из трёх состояний: загружен, частичная ошибка или загрузка. Каждое требовало отдельного визуального языка - точного сообщения и действия, удерживающего аналитика в работе."}
         </motion.p>
       </div>
       <div className="as-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "28px", alignItems: "start" }}>
@@ -1234,7 +1519,7 @@ function AnalyticsAdminSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease:
       >
         {lang === "en"
           ? "Alongside the end-user dashboard, I designed the widget configuration panel that admins use to set data sources, thresholds, and alert rules per widget. The challenge: exposing enough power for data analysts without overwhelming operations managers who configure the dashboard once and forget."
-          : "Параллельно с пользовательским дашбордом я проектировал панель настройки виджетов для администраторов — источники данных, пороговые значения и правила уведомлений. Задача: дать достаточно возможностей аналитикам данных, не перегружая менедж��ров, которые настраивают дашборд один раз."}
+          : "Параллельно с пользовательским дашбордом я проектировал панель настройки виджетов для администраторов - источники данных, пороговые значения и правила уведомлений. Задача: дать достаточно возможностей аналитикам данных, не перегружая менеджеров, которые настраивают дашборд один раз."}
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
@@ -1301,8 +1586,8 @@ function AnalyticsExplorationSection({ lang, ease: _ease, inView: _inView }: { l
             style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: 0 }}
           >
             {lang === "en"
-              ? "We shadowed 8 ops managers in real workflows, building a User Persona from interview synthesis. Card sorting with 22 participants revealed 4 natural widget clusters — not the 2 the team assumed. A JTBD-framed journey map exposed exactly where time-to-insight was lost and what decisions users couldn't make from the dashboard alone."
-              : "Мы наблюдали за 8 опс-менеджерами в реальной работе и синтезировали интервью в User Persona. Карточная сортировка с 22 участниками выявила 4 естественных кластера виджетов — а не 2, которые предполагала команда. JTBD-карта пути показала точно, где терялось время до инсайта и какие решения ��ользователи не могли принять прямо из дашборда."}
+              ? "We shadowed 8 ops managers in real workflows, building a User Persona from interview synthesis. Card sorting with 22 participants revealed 4 natural widget clusters - not the 2 the team assumed. A JTBD-framed journey map exposed exactly where time-to-insight was lost and what decisions users couldn't make from the dashboard alone."
+              : "Мы наблюдали за 8 опс-менеджерами в реальной работе и синтезировали интервью в User Persona. Карточная сортировка с 22 участниками выявила 4 естественных кластера виджетов - а не 2, которые предполагала команда. JTBD-карта пути показала точно, где терялось время до инсайта и какие решения пользователи не могли принять прямо из дашборда."}
           </motion.p>
         </div>
 
@@ -1431,8 +1716,8 @@ function ExplorationSection({ lang, ease: _ease, inView: _inView }: { lang: "en"
             style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: 0 }}
           >
             {lang === "en"
-              ? "Together with the PM, I developed JTBD, CJM and a Userflow — the three frameworks I used as the direct foundation for prototyping."
-              : "Совместно с продактом я разработал JTBD, CJM и Userflow — три инструмента, которые стали прямой основой для создания прототипов."}
+              ? "Together with the PM, I developed JTBD, CJM and a Userflow - the three frameworks I used as the direct foundation for prototyping."
+              : "Совместно с продактом я разработал JTBD, CJM и Userflow - три инструмента, которые стали прямой основой для создания прототипов."}
           </motion.p>
         </div>
 
@@ -1710,7 +1995,7 @@ export function CasePage() {
 
   const cs = caseStudy;
   const heroMockup = HERO_MOCKUPS[slug ?? ""];
-  const hasAnalyticsMockup = slug === "analytics-dashboard";
+  const hasAnalyticsMockup = slug === "ved";
   const hasHeroRight = !!heroMockup || hasAnalyticsMockup;
   const [hoveredPin, setHoveredPin] = useState<number | null>(null);
 
@@ -1980,7 +2265,7 @@ export function CasePage() {
         <div className="section-inner">
           <SectionLabel num="02" label={lang === "en" ? "Research" : "Исследование"} />
           <motion.h2 {...inView} style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 48px", maxWidth: "640px" }}>
-            {lang === "en" ? "Legacy UX and competitor analysis" : "Анализ legacy-UX и конкурентов"}
+            {lang === "en" ? "Competitive Analysis" : "Анализ конкурентов"}
           </motion.h2>
 
           {/* ── Research methods ── */}
@@ -2009,7 +2294,7 @@ export function CasePage() {
             <>
               {/* Label */}
               <div style={{ ...preset.nano, color: textColor.muted, letterSpacing: tracking.wider, textTransform: "uppercase" as const, marginBottom: "28px" }}>
-                {lang === "en" ? "Heuristic review — existing interface" : "Эвристический обзор — существующий интерфейс"}
+                {lang === "en" ? "Heuristic review - existing interface" : "Эвристический обзор - существующий интерфейс"}
               </div>
 
               {/* 2-column: screenshot + merged issue rows */}
@@ -2162,15 +2447,13 @@ export function CasePage() {
                     {t(cs.research.competitiveAnalysis.stat, lang)}
                   </span>
                 </div>
-                <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose, maxWidth: "520px" }}>
-                  {slug === "analytics-dashboard"
-                    ? (lang === "en"
-                        ? "I analysed 50+ Russian and international media sites, mapping content layout patterns, navigation approaches, visual hierarchy, and how each adapted to mobile-first reading. I also researched colour psychology across 30+ global brands to ground the accent palette decision."
-                        : "Проанализировал более 50 российских и зарубежных медиасайтов: компоновка контента, паттерны навигации, визуальная иерархия и адаптация к мобильному потреблению. Отдельно изучил цветовую психологию на базе 30+ мировых брендов для обоснования выбора акцентной палитры.")
-                    : (lang === "en"
-                        ? "I went through deposit and checkout flows across 8 competitor products, mapping screen-by-screen where each one handled the same friction points I had identified."
-                        : "Я прошёл флоу депозита и чекаута у 8 конкурентов - поэкранно фиксировал, как каждый из них справляется с теми же точками трения, которые я выявил.")}
-                </p>
+                {slug !== "ved" && (
+                  <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose, maxWidth: "520px" }}>
+                    {lang === "en"
+                      ? "I went through deposit and checkout flows across 8 competitor products, mapping screen-by-screen where each one handled the same friction points I had identified."
+                      : "Я прошёл флоу депозита и чекаута у 8 конкурентов - поэкранно фиксировал, как каждый из них справляется с теми же точками трения, которые я выявил."}
+                  </p>
+                )}
               </motion.div>
 
               {/* Main competitor cards — 3 columns */}
@@ -2278,7 +2561,7 @@ export function CasePage() {
             <div style={{ marginBottom: "72px" }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "12px", marginBottom: "28px" }}>
                 <div style={{ ...preset.nano, color: textColor.muted, letterSpacing: tracking.wider, textTransform: "uppercase" as const }}>
-                  {lang === "en" ? "Heuristic review — existing interface" : "Эвристический обзор — существующий интерфейс"}
+                  {lang === "en" ? "Heuristic review - existing interface" : "Эвристический обзор - существующий интерфейс"}
                 </div>
                 {cs.research.uiAnalysis.totalIssues && (
                   <span style={{ ...preset.nano, color: textColor.accent, background: "rgba(99,102,241,0.10)", border: "1px solid rgba(99,102,241,0.2)", padding: "3px 12px", borderRadius: "20px" }}>
@@ -2331,8 +2614,8 @@ export function CasePage() {
         `}</style>
       </Section>
 
-      {/* ── ANALYTICS-DASHBOARD: visual showcase sections ───────────────── */}
-      {slug === "analytics-dashboard" && (
+      {/* ── VED: visual showcase sections ───────────────── */}
+      {slug === "ved" && (
         <>
           {/* Wireframe */}
           <Section id="wireframe">
@@ -2346,7 +2629,7 @@ export function CasePage() {
                   <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose }}>
                     {lang === "en"
                       ? "Based on the competitive analysis of 50+ media sites, I built a detailed wireframe covering the key screens and user flows. The structure reflects the navigation patterns, content hierarchy and layout decisions I identified during research."
-                      : "На основе анализа конкурентов из 50+ медиасайтов я составил детализированный вайрфрейм, охватывающий ключевые экраны и пользовательские флоу. Структура отражает паттерны навигации, контентную иерархию и компоновочные решения, выявленные в ходе исследования."}
+                      : "На основе анализа 50+ новостных сайтов составил детализированный вайрфрейм, охватывающий ключевые экраны и пользовательские флоу. Структура отражает навигационные паттерны, контентную иерархию и layout-решения, выявленные в ходе исследования."}
                   </p>
                 </motion.div>
                 <motion.div
@@ -2394,7 +2677,7 @@ export function CasePage() {
                   <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose, maxWidth: "520px" }}>
                     {lang === "en"
                       ? "8 sequential phases, strict deadline. Research and wireframe first, then an investor-ready prototype, followed by iterative design and development of each content section."
-                      : "8 последовательных фаз, жёсткий дедлайн. Сначала исследование и вайрфрейм, затем прототип для инвесторов, потом итеративный дизайн и разработка каждого раздела."}
+                      : "8 последовательных фаз, жёсткий дедлайн. Сначала исследование и вайрфрейм, затем прототип для инвесторов, после - итеративный дизайн и разработка каждого раздела."}
                   </p>
                 </motion.div>
                 <motion.div
@@ -2497,44 +2780,23 @@ export function CasePage() {
           <Section id="analytics-dashboard-design">
             <AnalyticsDashboardSection lang={lang} ease={ease} />
           </Section>
-          <Section id="analytics-kpi">
-            <AnalyticsKPISection lang={lang} ease={ease} />
+          <Section id="analytics-dashboard-reels">
+            <ReelsPlayerSection lang={lang} ease={ease} />
           </Section>
-          <Section id="analytics-filters">
-            <AnalyticsFiltersSection lang={lang} ease={ease} />
+          <Section id="analytics-dashboard-news">
+            <NewsArticleSection lang={lang} ease={ease} />
           </Section>
-          <Section id="analytics-states">
-            <AnalyticsStateSection lang={lang} ease={ease} />
+          <Section id="analytics-dashboard-nocover">
+            <NewsNoCoverSection lang={lang} ease={ease} />
           </Section>
-          <Section id="analytics-admin">
-            <AnalyticsAdminSection lang={lang} ease={ease} />
+          <Section id="ved-error-states">
+            <ErrorStatesSection lang={lang} ease={ease} />
           </Section>
-
-          {/* Ideation */}
-          <Section id="ideation">
+          {/* Solution - removed */}
+          {false && (
+          <Section id="solution-removed">
             <div className="section-inner">
-              <SectionLabel num="05" label={lang === "en" ? "Ideation" : "Идеация"} />
-              <motion.div {...inView} style={{ marginBottom: "56px", paddingBottom: "56px", borderBottom: "1px solid rgba(255,255,255,0.055)" }}>
-                <div style={{ ...preset.nano, color: "rgba(99,102,241,0.55)", letterSpacing: tracking.wider, textTransform: "uppercase" as const, marginBottom: "16px" }}>How Might We</div>
-                <p style={{ ...preset.h2, fontWeight: weight.light, color: textColor.primary, margin: 0, maxWidth: "760px", fontStyle: "italic", lineHeight: leading.loose }}>
-                  "{t(cs.hmw, lang)}"
-                </p>
-              </motion.div>
-              <motion.p {...inView} style={{ ...preset.body, color: textColor.secondary, margin: "0 0 40px", lineHeight: leading.loose, maxWidth: "640px" }}>
-                {t(cs.exploration.description, lang)}
-              </motion.p>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "16px" }}>
-                {cs.exploration.concepts.map((concept, i) => (
-                  <ConceptCard key={i} concept={concept} lang={lang} />
-                ))}
-              </div>
-            </div>
-          </Section>
-
-          {/* Solution */}
-          <Section id="solution">
-            <div className="section-inner">
-              <SectionLabel num="06" label={lang === "en" ? "Solution" : "Решение"} />
+              <SectionLabel num="06" label="" />
               <div className="solution-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "56px", alignItems: "start" }}>
                 <motion.div {...inView}>
                   <h2 style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 20px" }}>
@@ -2560,6 +2822,7 @@ export function CasePage() {
             </div>
             <style>{`@media(max-width:768px){#solution .solution-two-col{grid-template-columns:1fr!important;gap:40px!important}}`}</style>
           </Section>
+          )}
         </>
       )}
 
@@ -2593,7 +2856,7 @@ export function CasePage() {
       )}
 
       {/* ── GENERIC: Goals + Funnel → Ideation → Solution ────────────────── */}
-      {slug !== "payment-flow" && slug !== "analytics-dashboard" && (
+      {slug !== "payment-flow" && slug !== "ved" && (
         <>
           {/* ── GOALS & PROBLEM FUNNEL ─────────────────────────────────── */}
           <Section id="goals">
@@ -2716,25 +2979,51 @@ export function CasePage() {
             <h2 style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 20px" }}>
               {lang === "en" ? "Testing" : "Тестирование"}
             </h2>
-            <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose }}>
-              {t(cs.testing.description, lang)}
-            </p>
+            {slug === "ved" ? (
+              <>
+                <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose }}>
+                  {lang === "en"
+                    ? "The editorial team helped recruit a pool of target users for usability tests. We tested the product before and after launch, reviewing it after each section deployment and improving the interface."
+                    : "Редакция помогала привлекать целевых пользователей для юзабилити-тестов. Проверяли продукт на каждом этапе: до запуска и после деплоя каждого раздела, собирали обратную связь и дорабатывали интерфейс."}
+                </p>
+              </>
+            ) : (
+              <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose }}>
+                {t(cs.testing.description, lang)}
+              </p>
+            )}
           </motion.div>
         </div>
       </Section>
 
-      {/* ── RESULTS ───────────────���──────────────────────────────────────── */}
+      {/* ── RESULTS ────────────────────────────────────────────────────────── */}
       <Section id="results" glow="rgba(74,222,128,0.04)">
         <div className="section-inner">
           <SectionLabel num="08" label={lang === "en" ? "Results & Impact" : "Результаты и эффект"} />
-          <motion.h2 {...inView} style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 48px", maxWidth: "600px" }}>
+          <motion.h2 {...inView} style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 28px", maxWidth: "600px" }}>
             {t(cs.results.businessImpact, lang)}
           </motion.h2>
 
-          {/* Metrics — same visual pattern as Hero section */}
+          {/* ved-specific detail paragraphs */}
+          {slug === "ved" && (
+            <motion.div {...inView} style={{ maxWidth: "640px", marginBottom: "48px" }}>
+              <p style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: "0 0 20px" }}>
+                {lang === "en"
+                  ? "We delivered the project on the client's deadline. During development we provided a clickable prototype for pre-launch stakeholder demonstrations."
+                  : "Запустили в срок. Подготовили кликабельный прототип для демонстрации инвесторам до запуска."}
+              </p>
+              <p style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: 0 }}>
+                {lang === "en"
+                  ? "We prepared the site for the opening-day presentation, which was displayed on custom vertical kiosks - requiring a dedicated responsive adaptation."
+                  : "К открытию адаптировали сайт под нестандартные вертикальные дисплеи - специально скорректировали адаптивную вёрстку под формат показа."}
+              </p>
+            </motion.div>
+          )}
+
+          {/* Metrics */}
           <motion.div
             {...inView}
-            style={{ display: "flex", flexWrap: "wrap", gap: "0", marginBottom: "40px", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "12px", overflow: "hidden" }}
+            style={{ display: "flex", flexWrap: "wrap", gap: "0", marginBottom: slug === "ved" ? "56px" : "40px", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "12px", overflow: "hidden" }}
           >
             {cs.results.metrics.map((m, i) => (
               <div key={i} style={{ flex: "1 1 0", minWidth: "120px", padding: "14px 18px", borderRight: i < cs.results.metrics.length - 1 ? "1px solid rgba(255,255,255,0.07)" : "none", background: "rgba(255,255,255,0.018)" }}>
@@ -2744,7 +3033,46 @@ export function CasePage() {
             ))}
           </motion.div>
 
+          {/* Launch event photos — ved only */}
+          {slug === "ved" && (
+            <motion.div
+              initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ duration: 0.7, ease }}
+              className="ved-launch-grid"
+              style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "16px" }}
+            >
+              {[vedLaunchKiosk1Img, vedLaunchBannerImg, vedLaunchKiosk2Img].map((src, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, ease, delay: i * 0.1 }}
+                  style={{
+                    borderRadius: "16px",
+                    overflow: "hidden",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    background: "#0a0a0f",
+                    aspectRatio: "3/4",
+                  }}
+                >
+                  <img
+                    src={src}
+                    alt={lang === "en" ? `Launch event ${i + 1}` : `Открытие ${i + 1}`}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
         </div>
+        <style>{`
+          @media(max-width:768px){
+            .ved-launch-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+          }
+          @media(max-width:1024px) and (min-width:769px){
+            .ved-launch-grid { grid-template-columns: 1fr 1fr !important; }
+          }
+        `}</style>
       </Section>
 
       {/* ── LEARNINGS ───────────────────────────────────────���────────────── */}

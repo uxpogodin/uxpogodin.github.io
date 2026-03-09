@@ -16,23 +16,23 @@ const WORDS: HighlightedWord[] = [
   },
   {
     text:    { en: "define",       ru: "Определяю" },
-    tooltip: { en: "Synthesise research into one clear problem statement. Align the team before touching solutions.", ru: "Синтезирую исследование в чёткий стейтмент проблемы. Выравниваю команду до решений." },
+    tooltip: { en: "Synthesise research into one clear problem statement. Align the team before touching solutions.", ru: "Превращаю исследование в чёткое понимание проблемы. Привожу команду к единому видению решения." },
   },
   {
     text:    { en: "explore",      ru: "ищу" },
-    tooltip: { en: "Sketch widely, analyse competitors, consider edge cases. Quantity before quality.", ru: "Широко скетчирую, анализирую конкурентов, рассматриваю крайние случаи." },
+    tooltip: { en: "Sketch widely, analyse competitors, consider edge cases. Quantity before quality.", ru: "Генерир��ю много идей, изучаю конкурентов, прорабатываю нестандартные сценарии." },
   },
   {
     text:    { en: "prototype",    ru: "прототипирую" },
-    tooltip: { en: "Turn ideas into tangible artefacts. From paper sketches to interactive flows.", ru: "Превращаю идеи в ощутимые артефакты. От бумажных скетчей до интерактивных флоу." },
+    tooltip: { en: "Turn ideas into tangible artefacts. From paper sketches to interactive flows.", ru: "От идеи до кликабельного прототипа - быстро, с нейросетями, без лишних итераций." },
   },
   {
     text:    { en: "test",         ru: "тестирую" },
-    tooltip: { en: "Validate with real users. Identify friction, gaps in mental models, and prioritise fixes.", ru: "Валидирую с реальными пользователями. Нахожу трение и приоритизирую исправления." },
+    tooltip: { en: "Validate with real users. Identify friction, gaps in mental models, and prioritise fixes.", ru: "Тестирую на реальных пользователях, нахожу точки трения и расставляю приоритеты в правках." },
   },
   {
     text:    { en: "launch",       ru: "запускаю" },
-    tooltip: { en: "Work closely with engineers, review components and ship the product to users.", ru: "Работаю плотно с разработчиками, ревьюю компоненты и выпускаю продукт." },
+    tooltip: { en: "Work closely with engineers, review components and ship the product to users.", ru: "Работаю в связке с командой - дизайнеры, аналитики, разработчики, менеджеры. Проверяю компоненты и довожу продукт до релиза." },
   },
 ];
 

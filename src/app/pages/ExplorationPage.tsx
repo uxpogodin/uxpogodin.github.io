@@ -57,7 +57,7 @@ const GAME_STARS = (() => {
   return stars;
 })();
 
-// ── types ─────────────────────────────────────────────────────────────────────
+// ── types ───────────��─────────────────────────────────────────────────────────
 interface L10n { en: string; ru: string; }
 
 /** Each slide can be either a plain image or a React component screen */
@@ -298,16 +298,13 @@ function PhoneCarousel({ slides, lang }: { slides: Slide[]; lang: "en" | "ru" })
 }
 
 // ── Shared project section layout ─────────────────────────────────────────────
-interface ProjectMeta { label: L10n; value: L10n; }
-
 function ProjectSection({
-  id, tags, title, description, meta, slides, lang, glowRight = false,
+  id, tags, title, description, slides, lang, glowRight = false,
 }: {
   id: string;
   tags: { text: string; accent?: boolean }[];
   title: string;
   description: L10n;
-  meta: ProjectMeta[];
   slides: Slide[];
   lang: "en" | "ru";
   glowRight?: boolean;
@@ -328,7 +325,7 @@ function ProjectSection({
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "80px",
-          alignItems: "start",
+          alignItems: "center",
         }}>
 
           {/* ── Left: sticky info ── */}
@@ -337,7 +334,6 @@ function ProjectSection({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease }}
-            style={{ position: "sticky", top: "120px" }}
           >
             {/* Tags */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "32px" }}>
@@ -371,28 +367,6 @@ function ProjectSection({
             }}>
               {description[lang]}
             </p>
-
-            {/* Meta grid */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-              {meta.map((item, i) => (
-                <div key={i} style={{
-                  padding: "16px 0",
-                  borderBottom: "1px solid rgba(255,255,255,0.06)",
-                  paddingRight: i % 2 === 0 ? "20px" : 0,
-                }}>
-                  <div style={{
-                    ...preset.nano, color: textColor.muted,
-                    letterSpacing: tracking.wider, textTransform: "uppercase" as const,
-                    marginBottom: "5px",
-                  }}>
-                    {item.label[lang]}
-                  </div>
-                  <div style={{ ...preset.small, color: textColor.secondary }}>
-                    {item.value[lang]}
-                  </div>
-                </div>
-              ))}
-            </div>
           </motion.div>
 
           {/* ── Right: carousel ── */}
@@ -577,8 +551,8 @@ function GameBentoSection({ lang }: { lang: "en" | "ru" }) {
             </h2>
             <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose, maxWidth: "380px" }}>
               {lang === "en"
-                ? "A browser wave-survival game I built from scratch — top-down pixel art arena, custom sprite animation system, wave mechanics, levelling, and a cast of enemies I designed myself."
-                : "Браузерная волновая выживалка с нуля: вид сверху, кастомная система анимации спрайтов, механика волн, прокачка и несколько врагов, которых я сам нарисовал."}
+                ? "A browser wave-survival game I built from scratch - top-down pixel art arena, custom sprite animation system, wave mechanics, levelling, and a cast of enemies I designed myself."
+                : "Браузерная игра-выживалка с нуля: вид сверху, механика волн врагов, прокачка персонажа. Спрайты сгенерированы из видео, вайбкодил в FigmaMake."}
             </p>
           </div>
 
@@ -702,22 +676,22 @@ export function ExplorationPage() {
               letterSpacing: tracking.wider, textTransform: "uppercase" as const,
               marginBottom: "16px",
             }}>
-              {lang === "en" ? "Side projects & experiments" : "Боковые проекты и эксперименты"}
+              {lang === "en" ? "Side projects & experiments" : "Небольшие проекты и концепты"}
             </div>
             <h1 style={{
               ...preset.display, fontWeight: weight.medium,
               color: textColor.primary, margin: "0 0 20px",
               letterSpacing: tracking.tight,
             }}>
-              Exploration
+              {lang === "en" ? "Exploration" : "Эксперименты"}
             </h1>
             <p style={{
               ...preset.body, color: textColor.secondary,
               margin: 0, maxWidth: "520px", lineHeight: leading.loose,
             }}>
               {lang === "en"
-                ? "Projects that didn't make it into the main case studies — but shaped how I think about design problems. One format per project."
-                : "Проекты, которые не вошли в основные кейсы — но сформировали то, как я думаю о задачах. дин формат на проект."}
+                ? "Projects that didn't make it into the main case studies - but shaped how I think about design problems. One format per project."
+                : "Не все проекты стали кейсами. Но каждый из них повлиял на то, как я подхожу к задачам."}
             </p>
           </motion.div>
         </div>
@@ -732,21 +706,15 @@ export function ExplorationPage() {
         ]}
         title="FlowPay"
         description={{
-          en: "An embeddable payment widget for SaaS and e-commerce platforms. Covers the full checkout flow — amount input, order summary, and clear payment status screens.",
-          ru: "Встраиваемый платёжный виджет для SaaS и e-commerce. Охватывает полный флоу оплаты — ввод суммы, сводка заказа и понятные экраны статуса платежа.",
+          en: "An embeddable payment widget for SaaS and e-commerce platforms. Covers the full checkout flow - amount input, order summary, and clear payment status screens.",
+          ru: "Встраиваемый платёжный виджет для SaaS и e-commerce. Покрывает полный флоу оплаты: ввод суммы, сводка заказа и экраны статуса платежа.",
         }}
-        meta={[
-          { label: { en: "Role",     ru: "Роль"        }, value: { en: "Product Designer",  ru: "Продуктовый дизайнер" } },
-          { label: { en: "Year",     ru: "Год"         }, value: { en: "2024",               ru: "2024"                } },
-          { label: { en: "Platform", ru: "Платформа"   }, value: { en: "Web · Mobile",      ru: "Веб · Мобайл"        } },
-          { label: { en: "Tools",    ru: "Инструменты" }, value: { en: "Figma",              ru: "Figma"               } },
-        ]}
         slides={FLOWPAY_SLIDES}
         lang={lang}
         glowRight
       />
 
-      {/* ══ MERCK PHARMA PORTAL ════════════════════════════════════════════════ */}
+      {/* ══ MERCK PHARMA PORTAL ═══════════════════════════════════════════════ */}
       <ProjectSection
         id="merck-portal"
         tags={[
@@ -755,15 +723,9 @@ export function ExplorationPage() {
         ]}
         title={lang === "en" ? "Pharma Portal" : "Фарм-портал"}
         description={{
-          en: "A large-scale medical portal for Merck — a platform for healthcare professionals with nosology directories, event calendars, interactive calculators and an expert library.",
-          ru: "Масштабный медицинский портал для компании Merck — платформа для специалистов здравоохранения с каталогом нозологий, календарём мероприятий, интерактивными калькуляторами и библиотекой экспертов.",
+          en: "A large-scale medical portal for Merck - a platform for healthcare professionals with nosology directories, event calendars, interactive calculators and an expert library.",
+          ru: "Масштабный медицинский портал для платформы специалистов здравоохранения. Каталог нозологий, календарь мероприятий, интерактивные калькуляторы и библиотека экспертов.",
         }}
-        meta={[
-          { label: { en: "Role",     ru: "Роль"        }, value: { en: "Product Designer",  ru: "Продуктовый дизайнер"     } },
-          { label: { en: "Year",     ru: "Год"         }, value: { en: "2024",               ru: "2024"                     } },
-          { label: { en: "Platform", ru: "Платформа"   }, value: { en: "iOS · Android",     ru: "iOS · Android"            } },
-          { label: { en: "Tools",    ru: "Инструменты" }, value: { en: "Figma",              ru: "Figma"                    } },
-        ]}
         slides={MERCK_SLIDES}
         lang={lang}
       />
@@ -777,15 +739,9 @@ export function ExplorationPage() {
         ]}
         title="OrangeData"
         description={{
-          en: "Registration flow for OrangeData — a fiscal data operator. A 4-step onboarding: phone verification, personal data, organisation details, and a confirmation screen. Designed to feel trustworthy and fast.",
-          ru: "Флоу регитрации для OrangeData — оператора фискальных данных. Онбординг из 4 шагов: подтверждение телефона, личные данные, данные организации и экран завершения. Дизайн, который внушает доверие и не тратит время пользователя.",
+          en: "Registration flow for OrangeData - a fiscal data operator. A 4-step onboarding: phone verification, personal data, organisation details, and a confirmation screen. Designed to feel trustworthy and fast.",
+          ru: "Флоу регистрации для оператора фискальных данных. Онбординг из 4 шагов: подтверждение телефона, личные данные, данные организации и финальный экран успеха.",
         }}
-        meta={[
-          { label: { en: "Role",     ru: "Роль"        }, value: { en: "Product Designer",  ru: "Продуктовый дизайнер" } },
-          { label: { en: "Year",     ru: "Год"         }, value: { en: "2024",               ru: "2024"                } },
-          { label: { en: "Platform", ru: "Платформа"   }, value: { en: "iOS · Android",     ru: "iOS · Android"       } },
-          { label: { en: "Tools",    ru: "Инструменты" }, value: { en: "Figma",              ru: "Figma"               } },
-        ]}
         slides={ORANGEDATA_SLIDES}
         lang={lang}
         glowRight
@@ -800,15 +756,9 @@ export function ExplorationPage() {
         ]}
         title="Sitelynx"
         description={{
-          en: "A no-code platform for creating personal business card websites. Users customise blocks — photo, video, links — directly from a mobile editor with live preview and auto-save.",
-          ru: "Но-код платформа для создания персональных сайтов-визиток. Пользователь настраивает блоки — фото, видео, ссылки — прямо из мобильного редактора с превью в реальном времени и автосохранением.",
+          en: "A no-code platform for creating personal business card websites. Users customise blocks - photo, video, links - directly from a mobile editor with live preview and auto-save.",
+          ru: "Но-код конструктор персональных сайтов-визиток. Пользователь собирает страницу из блоков - фото, видео, ссылки - в мобильном редакторе с превью в реальном времени и автосохранением.",
         }}
-        meta={[
-          { label: { en: "Role",     ru: "Роль"        }, value: { en: "Product Designer",  ru: "Продуктовый дизайнер" } },
-          { label: { en: "Year",     ru: "Год"         }, value: { en: "2024",               ru: "2024"                } },
-          { label: { en: "Platform", ru: "Платформа"   }, value: { en: "iOS · Android",     ru: "iOS · Android"       } },
-          { label: { en: "Tools",    ru: "Инструменты" }, value: { en: "Figma",              ru: "Figma"               } },
-        ]}
         slides={SITELYNX_SLIDES}
         lang={lang}
       />

@@ -26,7 +26,7 @@ const NAV = {
     { label: "Процесс",     anchor: "process",     href: undefined as string | undefined },
     { label: "Инструменты", anchor: "tools",       href: undefined as string | undefined },
     { label: "Обо мне",     anchor: "about",       href: undefined as string | undefined },
-    { label: "Exploration", anchor: "exploration", href: "/exploration"                  },
+    { label: "Эксперименты", anchor: "exploration", href: "/exploration"                  },
     { label: "Контакт",     anchor: "contact",     href: undefined as string | undefined },
   ],
 };
@@ -229,8 +229,11 @@ export function Header({ lang, setLang, scrollTo }: HeaderProps) {
 
           {/* CV */}
           <motion.a
-            href="/cv.pdf"
-            download="Yury_Pogodin_CV.pdf"
+            href={lang === "en"
+              ? "https://drive.google.com/file/d/1Sf8_VMD6EVTwFpV4XVAPuLQ71hvoHc8H/view?usp=sharing"
+              : "https://drive.google.com/file/d/1AcPIYCYC9syE00OTbp07JOu-x_Zl2xnq/view?usp=sharing"}
+            target="_blank"
+            rel="noopener noreferrer"
             whileTap={{ scale: 0.95 }}
             className="header-cv flex items-center gap-1.5 rounded-full px-4 py-2"
             style={{
@@ -341,7 +344,7 @@ export function Header({ lang, setLang, scrollTo }: HeaderProps) {
                 letterSpacing: tracking.wide,
               }}
             >
-              {lang === "en" ? "click anywhere to close" : "нажмите в любом месте"}
+              {lang === "en" ? "click anywhere to close" : "нажмите в любом месте, чтобы закрыть"}
             </motion.p>
           </motion.div>
         )}
@@ -349,8 +352,7 @@ export function Header({ lang, setLang, scrollTo }: HeaderProps) {
 
       <style>{`
         @media (max-width: 600px) {
-          .header-telegram { display: none !important; }
-          .header-cv       { display: none !important; }
+          .header-cv { display: none !important; }
         }
       `}</style>
     </>

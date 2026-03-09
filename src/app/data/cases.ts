@@ -30,7 +30,7 @@ export const CASES: CaseData[] = [
   },
   {
     id: 2,
-    slug: "analytics-dashboard",
+    slug: "ved",
     industry: { en: "Digital Media Platform", ru: "Медиа-платформа" },
     title: { en: "Ved", ru: "Веды" },
     description: {

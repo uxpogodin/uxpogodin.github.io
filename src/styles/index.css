@@ -1,0 +1,44 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/*
+  Prevent white flash before React mounts.
+  This runs synchronously with CSS parsing — before any JS executes.
+*/
+html,
+body,
+#root {
+  background-color: #030712 !important;
+  min-height: 100dvh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── Consistent section inner padding ────────────────────────────────────── */
+.section-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+@media (max-width: 640px) {
+  .section-inner {
+    padding: 0 20px;
+  }
+}
+
+/* ─── Case meta grid ────────────────────────────────────────────────────────── */
+.case-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+@media (max-width: 640px) {
+  .case-meta-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

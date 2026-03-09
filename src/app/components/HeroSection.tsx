@@ -149,14 +149,12 @@ export function HeroSection({ lang }: HeroSectionProps) {
                     {"\u00A0systems"}
                     <InlineCard />
                   </span>
-                  {"."}
                 </>
               ) : (
                 <>
                   <span style={{ color: textColor.accent }}>Продуктовый дизайнер</span>
                   {", специализируюсь на\u00A0платёжных системах"}
                   <InlineCard />
-                  {"."}
                 </>
               )}
             </span>

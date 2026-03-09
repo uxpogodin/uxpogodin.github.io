@@ -33,6 +33,16 @@ import sl1 from "figma:asset/0608d9895530ecfca384ee54b18be95202d1ec8a.png";
 import sl2 from "figma:asset/c244caa8fd98d2f78a9060af0417ccccef0c1fba.png";
 import sl3 from "figma:asset/c03ce5866e3017d4307cc8d61547431bfc70a4f7.png";
 
+// ── Pixel Archer game imports ─────────────────────────────────────────────────
+import gameShot        from "figma:asset/b611fe2289895cc9f5337178820ccf80e8a1393d.png";
+import gameChar3       from "figma:asset/1da161abfb73e0ea40fada72b389ccb0122dbbbf.png";
+import gameChar1       from "figma:asset/226f81b32f9530a4aff912d974344eef2a48c111.png";
+import gameChar2       from "figma:asset/29dc6ffef20d6eecc376024d5af4da933d4b3bc3.png";
+import gameSpriteSheet from "figma:asset/eec350927a32c950298ac3509011c23941cf4635.png";
+import gameEnemy       from "figma:asset/61d3c64fb4c15e10b2708dc88bb8304073117e43.png";
+import gameGargoyle    from "figma:asset/40693df9362280a6c61b89d624e43b23685c8cff.png";
+import gameGoblin      from "figma:asset/8da20a920b76333d176514e861a9c8c2c25b7ee2.png";
+
 // ── Deterministic star field for the game section ─────────────────────────────
 const GAME_STARS = (() => {
   const stars: Array<{ cx: number; cy: number; r: number; o: number; tw: boolean }> = [];
@@ -45,16 +55,6 @@ const GAME_STARS = (() => {
   }
   return stars;
 })();
-
-// ── Pixel Archer game imports ─────────────────────────────────────────────────
-import gameShot       from "figma:asset/b611fe2289895cc9f5337178820ccf80e8a1393d.png";
-import gameChar3      from "figma:asset/1da161abfb73e0ea40fada72b389ccb0122dbbbf.png";
-import gameChar1      from "figma:asset/226f81b32f9530a4aff912d974344eef2a48c111.png";
-import gameChar2      from "figma:asset/29dc6ffef20d6eecc376024d5af4da933d4b3bc3.png";
-import gameSpriteSheet from "figma:asset/eec350927a32c950298ac3509011c23941cf4635.png";
-import gameEnemy      from "figma:asset/61d3c64fb4c15e10b2708dc88bb8304073117e43.png";
-import gameGargoyle   from "figma:asset/40693df9362280a6c61b89d624e43b23685c8cff.png";
-import gameGoblin     from "figma:asset/8da20a920b76333d176514e861a9c8c2c25b7ee2.png";
 
 // ── types ─────────────────────────────────────────────────────────────────────
 interface L10n { en: string; ru: string; }

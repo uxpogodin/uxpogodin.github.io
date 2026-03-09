@@ -5,7 +5,8 @@ import { ArrowUpRight } from "lucide-react";
 import { preset, weight, leading, tracking, textColor, glow, colors } from "../styles/typography";
 import { CASES } from "../data/cases";
 import type { CaseData, Metric } from "../data/cases";
-import paymentMockupImg from "figma:asset/c3bc908ca6bf442f6af86f373e953f067176ce3c.png";
+import paymentMockupImg    from "figma:asset/c3bc908ca6bf442f6af86f373e953f067176ce3c.png";
+import analyticsMockupImg  from "figma:asset/409be3f8aa2bc996a3cd04a8e5ec279f5459ec20.png";
 
 // ─── Tag pill — единый компонент для всех карточек ──────────────────────────
 
@@ -370,8 +371,8 @@ function CaseCard({ data, lang, index }: { data: CaseData; lang: "en" | "ru"; in
           }}
         >
           {index === 0
-            ? <img src={paymentMockupImg} alt="Payment Mockup" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            : <AnalyticsPhoneMockup hovered={hovered} />
+            ? <img src={paymentMockupImg}   alt="Payment Mockup"   style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            : <img src={analyticsMockupImg} alt="Analytics Mockup" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           }
         </motion.div>
 

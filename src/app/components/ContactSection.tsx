@@ -10,21 +10,21 @@ const CONTENT = {
   en: {
     label: "Contact",
     links: [
-      { label: "Telegram",  href: "#" },
-      { label: "LinkedIn",  href: "#" },
+      { label: "Telegram", href: "https://t.me/pogodinyury" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/yuri-pogodin/" },
     ],
     copy: "© 2026 Pogodin",
-    vibeCoded: "Made with soul and Claude",
+    vibeCoded: "Made with love and Claude Code",
     cta: "Write me",
   },
   ru: {
     label: "Контакты",
     links: [
-      { label: "Telegram",  href: "#" },
-      { label: "LinkedIn",  href: "#" },
+      { label: "Telegram", href: "https://t.me/pogodinyury" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/yuri-pogodin/" },
     ],
     copy: "© 2026 Погодин",
-    vibeCoded: "Сделано с душой и Claude",
+    vibeCoded: "Сделано с любовью и Claude Code",
     cta: "Написать",
   },
 };

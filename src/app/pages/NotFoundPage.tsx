@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { useOutletContext } from "react-router";
 import { preset, weight, leading, textColor, colors } from "../styles/typography";
 import type { OutletCtx } from "../components/RootLayout";
+import { ContactSection } from "../components/ContactSection";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -16,12 +17,11 @@ export function NotFoundPage() {
         background: colors.bg,
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "24px",
+        alignItems: "stretch",
         paddingTop: "80px",
       }}
     >
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "24px" }}>
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
@@ -74,6 +74,8 @@ export function NotFoundPage() {
           {lang === "en" ? "← Back to home" : "← На главную"}
         </Link>
       </motion.div>
+      </div>
+      <ContactSection lang={lang} />
     </main>
   );
 }

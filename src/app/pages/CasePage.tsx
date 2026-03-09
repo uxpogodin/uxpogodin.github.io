@@ -11,35 +11,58 @@ import {
   textColor, colors, glow,
 } from "../styles/typography";
 import type { OutletCtx } from "../components/RootLayout";
-import paymentMockupImg    from "figma:asset/c3bc908ca6bf442f6af86f373e953f067176ce3c.png";
+import { ContactSection } from "../components/ContactSection";
+import paymentMockupImg    from "figma:asset/8c3e23dbc376e58c1f3059b97cb74fd36316c18a.png";
 import oldPaymentUiImg     from "figma:asset/1ee0081431c7e25f552afc17c02f5c06e78a5ff1.png";
 import competitorScreenImg from "figma:asset/9a6345f57dbffb8c1fa02c48f80298989cbbd1a7.png";
 import cjmTableImg         from "figma:asset/2cba74f278faf7c3b4f1224aaf757dc40a259620.png";
 import figmaWorkspaceImg   from "figma:asset/61e624cc0057c4c69208007400aa69248f547e2c.png";
 import personaImg          from "figma:asset/de5242f521829b507daf3b68727c8f810a68fdb7.png";
 import beforeDepositImg    from "figma:asset/1073038188ba9f5833e6ed0b8bdc41b2b8201da8.png";
-import AfterComponent      from "../../imports/After";
+import afterDepositImg     from "figma:asset/4fbba88f96850e570e9eeba8d1d1dcad08f460a2.png";
 import beforeAmountImg     from "figma:asset/9acbe4ca3f8edf9548530d79b98053aea77e6142.png";
 import afterAmountImg      from "figma:asset/4e89c91aa5fb6308677105094152da871daa4810.png";
 import beforeCryptoImg     from "figma:asset/4c4eb3b4eaf7c355ae5b71509cf8e9a1a3d784b7.png";
-import cryptoAfterImg      from "figma:asset/cd31f5472071cb25f5e252e3edac761b9a356611.png";
+import cryptoAfterImg      from "figma:asset/8c3e23dbc376e58c1f3059b97cb74fd36316c18a.png";
 import depositSuccessImg   from "figma:asset/2b1852be2b56e1e4fb9bf10e08fadadedae4135c.png";
 import depositErrorImg     from "figma:asset/a8a92b9e029bd5e181a29eb0831777f5b564b1fd.png";
 import depositPendingImg   from "figma:asset/57835501509044ca7ac5d6876e0b425a30485088.png";
 import adminPanelImg       from "figma:asset/dbacf092a7938454d0067ca417c46cd167738078.png";
-import analyticsMockupImg  from "figma:asset/30e8f6cd72fde783a84141503c9ea44673d97877.png";
-import xbetCompetitorImg   from "figma:asset/8e0535986399de70543eb43175ce28635b44e248.png";
-import winCompetitorImg    from "figma:asset/f82c29d1ec066414e954472f1c00549b515d62b3.png";
+import analyticsMockupImg  from "figma:asset/409be3f8aa2bc996a3cd04a8e5ec279f5459ec20.png";
+import xbetCompetitorImg       from "figma:asset/8e0535986399de70543eb43175ce28635b44e248.png";
+import winCompetitorImg        from "figma:asset/f82c29d1ec066414e954472f1c00549b515d62b3.png";
+import spinbetterCompetitorImg from "figma:asset/e0b019c236d03c6cdb486edd67c4a633afec1374.png";
+import teenVogueCompetitorImg  from "figma:asset/6819b7de87e977075c482815b47dc18b62345dd7.png";
+import paperCompetitorImg      from "figma:asset/5843e2bf1dc8e29d1dd1f5e892df3cd79f173e65.png";
+import colorPaletteResearchImg from "figma:asset/1e6125d01b3b69de96d4337b627db5909025e001.png";
+import vedWireframeImg         from "figma:asset/960b7abecee79f0a4d567fe1caba894d4ce79bad.png";
+import vedVideoSectionImg      from "figma:asset/2dd9c99a6e0791c0fd6bd6d76f707e2c1eadb622.png";
 
 // Lookup map for competitor images that must be imported as figma:asset in .tsx
 const COMPETITOR_IMG_MAP: Record<string, string> = {
-  "__figma:1xbet-competitor__": xbetCompetitorImg,
-  "__figma:1win-competitor__":  winCompetitorImg,
+  "__figma:1xbet-competitor__":      xbetCompetitorImg,
+  "__figma:1win-competitor__":       winCompetitorImg,
+  "__figma:spinbetter-competitor__": spinbetterCompetitorImg,
+  "__figma:teenvogue-competitor__":  teenVogueCompetitorImg,
+  "__figma:paper-competitor__":      paperCompetitorImg,
+  "__figma:colorpalette-research__": colorPaletteResearchImg,
 };
 const resolveCompetitorImg = (image: string): string =>
   COMPETITOR_IMG_MAP[image] ?? image;
 
 
+
+// ── Analytics-dashboard: project timeline ────────────────────────────────────
+const VED_TIMELINE = [
+  { num: "01", days: 3,  en: "Research",           ru: "Исследование",          durEn: "3 days",     durRu: "3 дня",        noteEn: null,                               noteRu: null,                                   color: "#4F46E5" },
+  { num: "02", days: 7,  en: "Wireframe",           ru: "Вайрфрейм",             durEn: "1 week",     durRu: "1 неделя",     noteEn: null,                               noteRu: null,                                   color: "#6366F1" },
+  { num: "03", days: 10, en: "Clickable prototype", ru: "Кликабельный прототип", durEn: "~1.5 weeks", durRu: "~1.5 недели",  noteEn: "Investor pitch + stakeholder demo", noteRu: "Питч инвесторам + демо стейкхолдерам", color: "#F59E0B" },
+  { num: "04", days: 14, en: "Video section",       ru: "Раздел Видео",          durEn: "2 weeks",    durRu: "2 недели",     noteEn: "Design + dev + testing",           noteRu: "Дизайн + разработка + тест",           color: "#8B5CF6" },
+  { num: "05", days: 14, en: "Longreads section",   ru: "Раздел Лонгриды",       durEn: "2 weeks",    durRu: "2 недели",     noteEn: "Design + dev + testing",           noteRu: "Дизайн + разработка + тест",           color: "#7C3AED" },
+  { num: "06", days: 10, en: "News section",        ru: "Раздел Новости",        durEn: "~1.5 weeks", durRu: "~1.5 недели",  noteEn: "Design + dev + testing",           noteRu: "Дизайн + разработка + тест",           color: "#6D28D9" },
+  { num: "07", days: 3,  en: "Product testing",     ru: "Тестирование продукта", durEn: "3 days",     durRu: "3 дня",        noteEn: null,                               noteRu: null,                                   color: "#10B981" },
+  { num: "08", days: 1,  en: "Launch",              ru: "Выход в прод",          durEn: "1 day",      durRu: "1 день",       noteEn: null,                               noteRu: null,                                   color: "#F97316" },
+];
 
 // ── Hero video (payment-flow) ─────────────────────────────────────────────────
 const PAYMENT_VIDEO_SOURCES = [
@@ -190,7 +213,7 @@ interface BASProps {
   radius?:     string;
 }
 
-function BeforeAfterSlider({ lang, beforeSrc, beforeNode, afterSrc, afterNode, bg = "#050b1a", width = "346px", ratio = "346 / 680", radius = "24px" }: BASProps) {
+function BeforeAfterSlider({ lang, beforeSrc, beforeNode, afterSrc, afterNode, bg = "#050b1a", width = "256px", ratio = "346 / 680", radius = "20px" }: BASProps) {
   const [pos, setPos]   = useState(50);
   const containerRef    = useRef<HTMLDivElement>(null);
   const dragging        = useRef(false);
@@ -357,7 +380,7 @@ function FinalDesignSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: re
             viewport={{ once: true }} transition={{ duration: 0.6, ease: _ease as number[] }}
             style={{ ...preset.h2, fontWeight: weight.medium, color: textColor.primary, marginBottom: "20px" }}
           >
-            {lang === "en" ? "Before & After" : "До и после"}
+            {lang === "en" ? "Choosing Method" : "Выбор платежного метода"}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
@@ -365,8 +388,8 @@ function FinalDesignSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: re
             style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: "0 0 24px" }}
           >
             {lang === "en"
-              ? "The redesign replaced a cluttered grid of 15+ payment icons with a structured list of four deposit categories. The result: faster orientation, fewer taps, and a clear path from intent to action."
-              : "Редизайн заменил перегруженную сетку из 15+ платёжных иконок на структурированный список из четырёх категорий пополнения. Результат: быстрее ориентация, меньше касаний и чёткий путь от намерения к действию."}
+              ? "Replaced a cluttered grid of 15+ payment icons with a structured list of four categories. The result: faster orientation and less cognitive load."
+              : "Заменил перегруженную сетку из 15+ платёжных иконок на структурированный список из четырёх категорий. Результат: быстрая ориентация и меньше когнитивная нагрузка."}
           </motion.p>
 
         </div>
@@ -377,7 +400,7 @@ function FinalDesignSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: re
           viewport={{ once: true }} transition={{ duration: 0.65, ease: _ease as number[], delay: 0.15 }}
           style={{ display: "flex", justifyContent: "center" }}
         >
-          <BeforeAfterSlider lang={lang} beforeSrc={beforeDepositImg} afterNode={<AfterComponent />} />
+          <BeforeAfterSlider lang={lang} beforeSrc={beforeDepositImg} afterSrc={afterDepositImg} />
         </motion.div>
       </div>
 
@@ -413,8 +436,8 @@ function AmountInputSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: re
             style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: 0 }}
           >
             {lang === "en"
-              ? "The amount entry step was rebuilt from a flat form with six scattered presets into a focused modal. A single labeled input, three quick-pick chips, and a grouped payment row cut the decision surface and move the user straight to confirmation."
-              : "Шаг ввода суммы был переработан из плоской формы с шестью разрозненными пресетами в сфокусированный модал. Единый размеченный ввод, три кнопки быстрого выбора и сгруппированный ряд платёжных методов сокращают нагрузку принятия решений и ведут пользователя прямо к подтверждению."}
+              ? "In the legacy solution, the deposit flow lacked focus - the user's attention wasn't directed to the task. Now amount entry is a dedicated step where attention is fully concentrated. We automatically pre-select the most popular or previously used method, while still letting the user switch methods without leaving the input screen."
+              : "В Legacy решении внимание юзера не было акцентировано на пополнении. Сейчас ввод суммы - это отдельный шаг, где внимание сфокусировано. Мы автоматически выбираем самый популярный или ранее используемый метод для пользователя, при этом оставляем возможность выбора метода не уходя с ввода суммы."}
           </motion.p>
         </div>
 
@@ -460,8 +483,8 @@ function CryptoDepositSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: 
             style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: 0 }}
           >
             {lang === "en"
-              ? "The crypto deposit screen was rebuilt from a dense information table with scattered fields into a focused modal. Token and network selectors sit at the top, a centred QR code takes visual priority, and the wallet address with copy action sits below — reducing cognitive load and cutting error-prone manual entry."
-              : "Экран пополнения криптовалютой был переработан из перегруженной таблицы со множеством полей в сфокусированный модал. Выбор токена и сети — сверху, QR-код по центру, адрес кошелька с копированием — снизу. Когнитивная нагрузка снижена, риск ошибок ввода устранён."}
+              ? "The crypto deposit screen was fully redesigned. I structured all the information and highlighted network selection with logos. Added a minimum deposit notification, highlighted the first and last characters of the wallet address, enabled QR download and added a Copy Address CTA. Users can also select a token and network without leaving this screen."
+              : "Экран пополнения криптовалютой полностью переработан. Я систематизировал всю информацию, подсветил для пользователя выбор сети логотипами. Добавил нотификацию о минимальном депозите, выделил первые и последние символы адреса кошелька, дал возможность скачать QR и добавил CTA действие - Скопировать адрес. Также пользователь может выбрать токен и сеть не уходя с этого экрана."}
           </motion.p>
         </div>
 
@@ -493,10 +516,6 @@ const STATUS_CARDS = [
     color:   "#22c55e",
     bg:      "rgba(34,197,94,0.10)",
     iconPath: "M5 12l5 5L20 7",
-    headingEn: "Balance topped up",
-    headingRu: "Баланс пополнен",
-    descEn: "A checkmark icon and green palette instantly communicate success. A concise transaction summary follows, and the 'Go play' CTA routes the user straight into the product — eliminating extra steps.",
-    descRu: "Иконка галочки и зелёная палитра мгновенно сигнализируют об успехе. Сводка транзакции фиксирует детали, а CTA «Играть» сразу уводит пользователя в продукт — без лишних шагов.",
   },
   {
     img:     depositErrorImg,
@@ -505,10 +524,6 @@ const STATUS_CARDS = [
     color:   "#ef4444",
     bg:      "rgba(239,68,68,0.10)",
     iconPath: "M6 6l12 12M18 6L6 18",
-    headingEn: "Something went wrong",
-    headingRu: "Что-то пошло не так",
-    descEn: "The error state is never a dead end. A red icon names the problem immediately, while two clear recovery actions — 'Top up another way' and 'Help' — keep the user moving forward.",
-    descRu: "Экран ошибки — не тупик. Красная иконка сразу называет проблему, а два действия — «Пополнить иначе» и «Помощь» — удерживают пользователя в воронке.",
   },
   {
     img:     depositPendingImg,
@@ -517,10 +532,6 @@ const STATUS_CARDS = [
     color:   "#6366f1",
     bg:      "rgba(99,102,241,0.10)",
     iconPath: "M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83",
-    headingEn: "Processing",
-    headingRu: "Ожидание",
-    descEn: "The spinner signals live processing without hiding context — the transaction table stays visible so the user always knows what is being processed and feels in control while waiting.",
-    descRu: "Спиннер сигнализирует об обработке, не скрывая детали — таблица транзакции остаётся видимой, снижая тревожность ожидания.",
   },
 ] as const;
 
@@ -543,8 +554,8 @@ function DepositStatusSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: 
           style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, maxWidth: "620px", margin: 0 }}
         >
           {lang === "en"
-            ? "Every deposit ends in one of three states — success, failure, or processing. Each needed its own visual language: clear iconography, a contextually appropriate message, and an action that keeps the user moving forward."
-            : "Любое пополнение завершается одним из трёх состояний — успехом, ошибкой или обработкой. Каждое требовало своего визуального языка: понятной иконографии, релевантного сообщения и действия, удерживающего пользователя в потоке."}
+            ? "Fully redesigned the status screens (Success, Error, Processing). Structured the information on each screen, added a transaction ID so users can contact support if needed. Introduced a user feedback module. Added copy buttons next to data users frequently need. Reworked the primary action on each screen — for example, the Success screen features a 'Go Play' CTA that brings the user back to their flow."
+            : "Полностью переработал экраны статусов (Успех, Ошибка, Обработка). На экране систематизирована информация, добавлен номер транзакции, с которым пользователь может обратиться в техническую поддержку. Добавлен сбор фидбека пользователей. Добавлены кнопки \"копировать\" рядом с данными, которые часто необходимы юзеру. Переработано целевое действие на экранах. Например, на экране успеха отображается CTA кнопка \"Go play\", которая ведёт пользователя обратно к нужному ему флоу."}
         </motion.p>
       </div>
 
@@ -575,15 +586,7 @@ function DepositStatusSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: 
               />
             </div>
 
-            {/* Heading + description */}
-            <div>
-              <p style={{ ...preset.body, color: textColor.primary, fontWeight: weight.medium, margin: "0 0 8px" }}>
-                {lang === "en" ? card.headingEn : card.headingRu}
-              </p>
-              <p style={{ ...preset.small, color: textColor.secondary, lineHeight: leading.loose, margin: 0 }}>
-                {lang === "en" ? card.descEn : card.descRu}
-              </p>
-            </div>
+
           </motion.div>
         ))}
       </div>
@@ -613,7 +616,7 @@ function AdminPanelSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: rea
         viewport={{ once: true }} transition={{ duration: 0.6, ease: _ease as number[] }}
         style={{ ...preset.h2, fontWeight: weight.medium, color: textColor.primary, marginBottom: "16px" }}
       >
-        {lang === "en" ? "Admin Panel: Offer Configuration" : "Админ-панель: настройка офферов"}
+        {lang === "en" ? "Admin Panel" : "Админ-панель"}
       </motion.h2>
       <motion.p
         initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
@@ -621,8 +624,8 @@ function AdminPanelSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: rea
         style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, maxWidth: "640px", margin: "0 0 56px" }}
       >
         {lang === "en"
-          ? "Alongside the customer-facing deposit flow, I designed the back-office interface operators use to manage payment methods. The key challenge was condensing a complex multi-parameter form into a clear, error-resistant modal that works equally well at 1280 px and 1920 px."
-          : "Параллельно с клиентским флоу я проектировал бэк-офисный интерфейс, через который операторы управляют платёжными методами. Главная задача — упаковать сложную многопараметрическую форму в понятную, устойчивую к ошибкам модалку, одинаково хорошо работающую на 1280 и 1920 пикселях."}
+          ? "Designed an admin panel that allows administrators to manage payment methods (add, remove, edit). Building this admin interface gave me a deeper understanding of how the cashier system works."
+          : "Задизайнил админ-панель, с помощью которой администраторы могут управлять платёжными методами (добавлять, удалять, редактировать). Создание данной админки помогло мне глубже понять устройство работы кассы."}
       </motion.p>
 
       {/* Full-width screenshot */}
@@ -1025,47 +1028,108 @@ function WidgetConfigMockup() {
 
 // ── Analytics Dashboard showcase sections ────────────────────────────────────
 function AnalyticsDashboardSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: readonly number[] }) {
+  const points = lang === "en"
+    ? [
+        { label: "Category filters",        desc: "Horizontal pill bar — Markets, Crypto, Life, AI — narrows the feed without leaving the screen." },
+        { label: "Two-column card grid",     desc: "Video thumbnails fill the viewport edge-to-edge with an inline play overlay so users stay in the feed." },
+        { label: "Breaking news strip",      desc: "A pinned card at the top surfaces the most urgent story with a timestamp, bridging editorial and algorithmic content." },
+        { label: "Bottom tab navigation",    desc: "Switches between Video, News and Longreads instantly without resetting scroll position in any section." },
+      ]
+    : [
+        { label: "Фильтры по категориям",    desc: "Горизонтальная панель — $$$, Крипта, Life, AI — сужает ленту без смены экрана." },
+        { label: "Двухколоночная сетка",     desc: "Карточки с превью видео заполняют вьюпорт, инлайн-плеер удерживает пользователя в ленте." },
+        { label: "Стрип срочных новостей",   desc: "Закреплённая карточка вверху выводит самый актуальный материал с таймстэмпом." },
+        { label: "Нижняя навигация",         desc: "Переключение между Видео, Новостями и Лонгридами без потери позиции скролла." },
+      ];
+
   return (
     <div className="section-inner">
-      <div className="fd-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "center" }}>
+      <SectionLabel num="05" label={lang === "en" ? "Final Design" : "Финальный дизайн"} />
+      <div className="fd-video-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "72px", alignItems: "center" }}>
+
+        {/* Left: text */}
         <div>
-          <SectionLabel num="04" label={lang === "en" ? "Final Design" : "Финальный дизайн"} />
+          <motion.div
+            initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.5, ease: _ease as number[] }}
+            style={{ ...preset.nano, color: "rgba(139,92,246,0.7)", letterSpacing: tracking.wider, textTransform: "uppercase" as const, marginBottom: "14px" }}
+          >
+            {lang === "en" ? "Section 01" : "Раздел 01"}
+          </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.6, ease: _ease as number[] }}
-            style={{ ...preset.h2, fontWeight: weight.medium, color: textColor.primary, marginBottom: "20px" }}
+            style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 16px" }}
           >
-            {lang === "en" ? "Before & After" : "До и после"}
+            {lang === "en" ? "Video" : "Видео"}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.55, ease: _ease as number[], delay: 0.1 }}
-            style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.55, ease: _ease as number[], delay: 0.08 }}
+            style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: "0 0 36px" }}
           >
             {lang === "en"
-              ? "The redesign replaced a static 14-widget grid with a modular drag-and-drop system. Three prominence tiers — Hero, Standard, Compact — create an instant visual hierarchy. Users now scan the dashboard in under 5 seconds and reach their key metric without scrolling."
-              : "Редизайн заменил статичную сетку из 14 виджетов модульной drag-and-drop системой. Три уровня значимости — Hero, Standard, Compact — создают мгновенную визуальную иерархию. Теперь пользователи считывают дашборд за 5 секунд и находят нужную метрику без прокрутки."}
+              ? "The video section is the primary entry point for media content. The design prioritises quick browsing and instant playback, keeping users in the feed."
+              : "Раздел видео — основная точка входа в медиаконтент. Дизайн сделан так, чтобы пользователь быстро находил нужное и запускал воспроизведение, не покидая ленту."}
           </motion.p>
+
+          {/* Feature list */}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {points.map((pt, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.45, delay: 0.1 + i * 0.07, ease: _ease as number[] }}
+                style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "16px 0 16px 16px", borderLeft: "2px solid rgba(139,92,246,0.3)" }}
+              >
+                <div style={{ ...preset.small, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 5px" }}>{pt.label}</div>
+                <div style={{ ...preset.small, color: textColor.secondary, lineHeight: leading.loose, margin: 0 }}>{pt.desc}</div>
+              </motion.div>
+            ))}
+          </div>
         </div>
+
+        {/* Right: mobile screenshot */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.65, ease: _ease as number[], delay: 0.15 }}
+          initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.75, ease: _ease as number[], delay: 0.12 }}
+          style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
         >
-          <BeforeAfterSlider
-            lang={lang}
-            beforeNode={<OldDashboardMockup />}
-            afterNode={<NewDashboardMockup />}
-            bg={DB.bg}
-            width="100%"
-            ratio="16 / 9"
-            radius="12px"
-          />
+          <div style={{
+            position: "relative",
+            maxWidth: "320px",
+            width: "100%",
+            borderRadius: "36px",
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.1)",
+            boxShadow: "0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04), 0 0 60px rgba(139,92,246,0.08)",
+            background: "#0a0a0f",
+          }}>
+            <div style={{ height: "14px", background: "#0a0a0f", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: "8px" }}>
+              <div style={{ width: "72px", height: "4px", borderRadius: "2px", background: "rgba(255,255,255,0.1)" }} />
+            </div>
+            <img
+              src={vedVideoSectionImg}
+              alt={lang === "en" ? "Video section" : "Раздел Видео"}
+              style={{ width: "100%", display: "block" }}
+            />
+            <div style={{ height: "22px", background: "#0a0a0f", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ width: "100px", height: "4px", borderRadius: "2px", background: "rgba(255,255,255,0.1)" }} />
+            </div>
+          </div>
         </motion.div>
+
       </div>
-      <style>{`@media(max-width:768px){#analytics-dashboard-design .fd-two-col{grid-template-columns:1fr!important;gap:40px!important}}`}</style>
+      <style>{`
+        @media(max-width:768px){
+          #analytics-dashboard-design .fd-video-col { grid-template-columns: 1fr !important; gap: 48px !important; }
+        }
+      `}</style>
     </div>
   );
 }
+
+// ��тов модульной drag-and-drop системой. Три уровня значимости — Hero, Standard, Compact — создают мгновенную визуальную иерархию. Теперь пользователи считывают дашборд за 5 секунд и находят нужную метрику без прокрутки."}
 
 function AnalyticsKPISection({ lang, ease: _ease }: { lang: "en" | "ru"; ease: readonly number[] }) {
   return (
@@ -1189,7 +1253,7 @@ function AnalyticsStateSection({ lang, ease: _ease }: { lang: "en" | "ru"; ease:
         >
           {lang === "en"
             ? "Every dashboard view resolves into one of three states: fully loaded, partially failed, or loading. Each required a distinct visual language — accurate messaging and an action that keeps the analyst moving forward."
-            : "Каждый вид дашборда разрешается в одно из трёх состояний: загружен, частичная ошибка или загрузка. Каждое требовало отдельного визуального языка — точного сообщения и действия, удерживающего аналитика в работе."}
+            : "Каждый вид дашборда разрешается в одно из трёх состояний: загружен, частичная ошибка или загрузка. Каждое требовало отдельного визуального языка — точного сообщения и действия, удерживающего аналитика в ра��оте."}
         </motion.p>
       </div>
       <div className="as-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "28px", alignItems: "start" }}>
@@ -1310,7 +1374,7 @@ function AnalyticsExplorationSection({ lang, ease: _ease, inView: _inView }: { l
           >
             {lang === "en"
               ? "We shadowed 8 ops managers in real workflows, building a User Persona from interview synthesis. Card sorting with 22 participants revealed 4 natural widget clusters — not the 2 the team assumed. A JTBD-framed journey map exposed exactly where time-to-insight was lost and what decisions users couldn't make from the dashboard alone."
-              : "Мы наблюдали за 8 опс-менеджерами в реальной работе и синтезировали интервью в User Persona. Карточная сортировка с 22 участниками выявила 4 естественных кластера виджетов — а не 2, которые предполагала команда. JTBD-карта пути показала точно, где терялось время до инсайта и какие решения пользователи не могли принять прямо из дашборда."}
+              : "Мы наблюдали за 8 опс-менеджерами в реальной работе и синтезировали интервью в User Persona. Карточная сортировка с 22 участниками выявила 4 естественных кластера виджетов — а не 2, которые предполагала команда. JTBD-карта пути показала точно, где терялось время до инсайта и какие решения ��ользователи не могли принять прямо из дашборда."}
           </motion.p>
         </div>
 
@@ -1439,8 +1503,8 @@ function ExplorationSection({ lang, ease: _ease, inView: _inView }: { lang: "en"
             style={{ ...preset.body, color: textColor.secondary, lineHeight: leading.loose, margin: 0 }}
           >
             {lang === "en"
-              ? "The exploration phase was iterative. We built a User Persona from interview synthesis, then used JTBD framing to articulate the core job behind the deposit action. A Customer Journey Map revealed two emotional drop-off points in the 6-step flow. Finally, a Userflow diagram connected all paths — card and crypto — and became the skeleton for every wireframe that followed."
-              : "Фаза исследовани�� была итераци��нной. Мы синтезировали интервью в User Persona, сформулировали ключевую задачу через JTBD и построили CJM, который обнажил два эмоциональных слома в 6-шаговом флоу. Userflow связал все пути — карточный �� криптовый — и стал основой для всех последующих вайрфреймов."}
+              ? "Together with the PM, I developed JTBD, CJM and a Userflow — the three frameworks I used as the direct foundation for prototyping."
+              : "Совместно с продактом я разработал JTBD, CJM и Userflow — три инструмента, которые стали прямой основой для создания прототипов."}
           </motion.p>
         </div>
 
@@ -1465,21 +1529,6 @@ function ExplorationSection({ lang, ease: _ease, inView: _inView }: { lang: "en"
                   alt=""
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: slide.objectPos, filter: slide.bright, display: "block" }}
                 />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 45%, rgba(3,7,18,0.88) 100%)" }} />
-                {/* Caption */}
-                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "20px 22px", display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
-                  <div>
-                    <div style={{ ...preset.nano, color: "rgba(255,255,255,0.32)", letterSpacing: tracking.wider, textTransform: "uppercase" as const, marginBottom: "4px" }}>
-                      {slide.tag}
-                    </div>
-                    <div style={{ ...preset.small, color: "rgba(255,255,255,0.72)", fontWeight: weight.medium }}>
-                      {lang === "en" ? slide.captionEn : slide.captionRu}
-                    </div>
-                  </div>
-                  <div style={{ ...preset.nano, color: "rgba(99,102,241,0.65)", letterSpacing: tracking.wider, textTransform: "uppercase" as const, background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.22)", padding: "3px 10px", borderRadius: "20px", flexShrink: 0, marginLeft: "12px" }}>
-                    Figma
-                  </div>
-                </div>
               </motion.div>
             ))}
 
@@ -1708,7 +1757,7 @@ function ConceptCard({ concept, lang }: { concept: FullCaseStudy["exploration"][
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Main page
-// ──────────────────────────────────────────────���──────────────────────────────
+// ──────────────────────��───────────────────────���──────────────────────────────
 
 export function CasePage() {
   const { slug }   = useParams<{ slug: string }>();
@@ -1789,17 +1838,19 @@ export function CasePage() {
                   {caseBase.industry[lang]}
                 </span>
 
-                {/* NDA disclaimer */}
-                <span style={{
-                  display: "inline-flex", alignItems: "center", gap: "5px",
-                  ...preset.nano, color: textColor.muted,
-                  padding: "4px 10px", borderRadius: "20px",
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                }}>
-                  <Lock size={9} strokeWidth={1.8} style={{ flexShrink: 0 }} />
-                  {lang === "en" ? "Brand identity changed due to NDA" : "Айдентика изменена в связи с NDA"}
-                </span>
+                {/* NDA disclaimer — shown for payment-flow only */}
+                {slug === "payment-flow" && (
+                  <span style={{
+                    display: "inline-flex", alignItems: "center", gap: "5px",
+                    ...preset.nano, color: textColor.muted,
+                    padding: "4px 10px", borderRadius: "20px",
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                  }}>
+                    <Lock size={9} strokeWidth={1.8} style={{ flexShrink: 0 }} />
+                    {lang === "en" ? "Brand identity changed due to NDA" : "Айдентика изменена в связи с NDA"}
+                  </span>
+                )}
               </motion.div>
 
               {/* Title */}
@@ -2184,9 +2235,13 @@ export function CasePage() {
                   </span>
                 </div>
                 <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose, maxWidth: "520px" }}>
-                  {lang === "en"
-                    ? "I went through deposit and checkout flows across 8 competitor products, mapping screen-by-screen where each one handled the same friction points I had identified."
-                    : "Я прошёл флоу депозита и чекаута у 8 конкурентов - поэкранно фиксировал, как каждый из них справляется с теми же точками трения, которые я выявил."}
+                  {slug === "analytics-dashboard"
+                    ? (lang === "en"
+                        ? "I analysed 50+ Russian and international media sites, mapping content layout patterns, navigation approaches, visual hierarchy, and how each adapted to mobile-first reading. I also researched colour psychology across 30+ global brands to ground the accent palette decision."
+                        : "Проанализировал более 50 российских и зарубежных медиасайтов: компоновка контента, паттерны навигации, визуальная иерархия и адаптация к мобильному потреблению. Отдельно изучил цветовую психологию на базе 30+ мировых брендов для обоснования выбора акцентной палитры.")
+                    : (lang === "en"
+                        ? "I went through deposit and checkout flows across 8 competitor products, mapping screen-by-screen where each one handled the same friction points I had identified."
+                        : "Я прошёл флоу депозита и чекаута у 8 конкурентов - поэкранно фиксировал, как каждый из них справляется с теми же точками трения, которые я выявил.")}
                 </p>
               </motion.div>
 
@@ -2257,7 +2312,7 @@ export function CasePage() {
                 style={{ position: "relative", borderRadius: "12px", overflow: "hidden" }}
               >
                 <div style={{ display: "flex", gap: "6px" }}>
-                  {[...cs.research.competitiveAnalysis.competitors, ...cs.research.competitiveAnalysis.competitors, ...cs.research.competitiveAnalysis.competitors.slice(0, 1)].map((c, i) => (
+                  {Array.from({ length: 11 }).map((_, i) => (
                     <div
                       key={i}
                       style={{
@@ -2266,12 +2321,11 @@ export function CasePage() {
                         height: "56px",
                         borderRadius: "6px",
                         overflow: "hidden",
-                        opacity: Math.max(0.05, 0.38 - i * 0.04),
+                        opacity: Math.max(0.04, 0.32 - i * 0.03),
                         border: "1px solid rgba(255,255,255,0.05)",
+                        background: `rgba(255,255,255,${0.03 + (i % 3) * 0.015})`,
                       }}
-                    >
-                      <img src={resolveCompetitorImg(c.image) || competitorScreenImg} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "saturate(0.5)" }} />
-                    </div>
+                    />
                   ))}
                 </div>
                 {/* Right fade */}
@@ -2352,45 +2406,163 @@ export function CasePage() {
       {/* ── ANALYTICS-DASHBOARD: visual showcase sections ───────────────── */}
       {slug === "analytics-dashboard" && (
         <>
-          {/* Goals + Funnel */}
-          <Section id="goals">
+          {/* Wireframe */}
+          <Section id="wireframe">
             <div className="section-inner">
-              <SectionLabel num="03" label={lang === "en" ? "Goals" : "Цели"} />
-              <div className="goals-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "56px", alignItems: "start" }}>
-                <motion.div {...inView}>
-                  <h2 style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 32px", maxWidth: "420px" }}>
-                    {lang === "en" ? "What we set out to achieve" : "Что мы хотели достичь"}
+              <SectionLabel num="03" label={lang === "en" ? "Wireframe" : "Вайрфрейм"} />
+              <div className="wireframe-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "56px", alignItems: "start" }}>
+                <motion.div {...inView} style={{ position: "sticky", top: "100px" }}>
+                  <h2 style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 20px" }}>
+                    {lang === "en" ? "From insights to structure" : "От инсайтов к структуре"}
                   </h2>
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    {cs.goals.map((goal, i) => (
-                      <motion.div key={i}
-                        initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: i * 0.08, ease }}
-                        style={{ display: "grid", gridTemplateColumns: "28px 1fr", columnGap: "16px", alignItems: "start", borderTop: "1px solid rgba(255,255,255,0.06)", padding: "18px 0" }}
-                      >
-                        <span style={{ ...preset.nano, fontWeight: weight.light, color: textColor.accent, opacity: 0.5, paddingTop: "3px" }}>{"0" + (i + 1)}</span>
-                        <div>
-                          <p style={{ ...preset.small, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 4px", lineHeight: leading.snug }}>{t(goal.title, lang)}</p>
-                          <p style={{ ...preset.nano, color: textColor.muted, margin: 0, letterSpacing: tracking.wide }}>{t(goal.metric, lang)}</p>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
+                  <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose }}>
+                    {lang === "en"
+                      ? "Based on the competitive analysis of 50+ media sites, I built a detailed wireframe covering the key screens and user flows. The structure reflects the navigation patterns, content hierarchy and layout decisions I identified during research."
+                      : "На основе анализа конкурентов из 50+ медиасайтов я составил детализированный вайрфрейм, охватывающий ключевые экраны и пользовательские флоу. Структура отражает паттерны навигации, контентную иерархию и компоновочные решения, выявленные в ходе исследования."}
+                  </p>
                 </motion.div>
-                <motion.div {...inView}>
-                  <div style={{ ...preset.nano, color: textColor.muted, letterSpacing: tracking.wider, textTransform: "uppercase" as const, marginBottom: "24px" }}>
-                    {lang === "en" ? "User drop-off funnel" : "Воронка оттока пользователей"}
-                  </div>
-                  <FunnelChart steps={cs.problem.funnel} lang={lang} />
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, ease }}
+                  className="wireframe-img-wrap"
+                  style={{
+                    borderRadius: "20px",
+                    overflow: "hidden",
+                    border: "1px solid rgba(255,255,255,0.07)",
+                    background: "rgba(255,255,255,0.02)",
+                    maxHeight: "560px",
+                  }}
+                >
+                  <img
+                    src={vedWireframeImg}
+                    alt={lang === "en" ? "Wireframe" : "Вайрфрейм"}
+                    style={{ width: "100%", display: "block", objectFit: "cover", objectPosition: "top", maxHeight: "560px" }}
+                  />
                 </motion.div>
               </div>
             </div>
-            <style>{`@media(max-width:768px){#goals .goals-two-col{grid-template-columns:1fr!important;gap:40px!important}}`}</style>
+            <style>{`
+              @media(max-width:768px){
+                #wireframe .wireframe-two-col{grid-template-columns:1fr!important;gap:32px!important}
+                #wireframe .wireframe-img-wrap{max-height:280px!important}
+                #wireframe .wireframe-img-wrap img{max-height:280px!important}
+              }
+            `}</style>
           </Section>
 
-          {/* Exploration carousel */}
-          <Section id="exploration">
-            <AnalyticsExplorationSection lang={lang} ease={ease} inView={inView} />
+          {/* Timeline */}
+          <Section id="ved-timeline">
+            <div className="section-inner">
+              <SectionLabel num="04" label={lang === "en" ? "Timeline" : "Таймлайн"} />
+
+              {/* Header */}
+              <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "40px", alignItems: "start", marginBottom: "56px" }}>
+                <motion.div {...inView}>
+                  <h2 style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 16px" }}>
+                    {lang === "en" ? "2 months, end to end" : "2 месяца от нуля до запуска"}
+                  </h2>
+                  <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose, maxWidth: "520px" }}>
+                    {lang === "en"
+                      ? "8 sequential phases, strict deadline. Research and wireframe first, then an investor-ready prototype, followed by iterative design and development of each content section."
+                      : "8 последовательных фаз, жёсткий дедлайн. Сначала исследование и вайрфрейм, затем прототип для инвесторов, потом итеративный дизайн и разработка каждого раздела."}
+                  </p>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.94 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, ease }}
+                  style={{ padding: "24px 28px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "20px", textAlign: "center", flexShrink: 0 }}
+                >
+                  <div style={{ ...preset.display, fontWeight: weight.light, color: textColor.primary, lineHeight: 1 }}>2</div>
+                  <div style={{ ...preset.small, color: textColor.muted, marginTop: "6px" }}>
+                    {lang === "en" ? "months" : "месяца"}
+                  </div>
+                  <div style={{ width: "28px", height: "1px", background: "rgba(255,255,255,0.12)", margin: "14px auto" }} />
+                  <div style={{ ...preset.nano, color: textColor.muted, letterSpacing: tracking.wider, textTransform: "uppercase" as const }}>
+                    {lang === "en" ? "8 phases" : "8 фаз"}
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Gantt bar */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease }}
+                style={{ marginBottom: "40px" }}
+              >
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+                  <span style={{ ...preset.nano, color: textColor.muted, letterSpacing: tracking.wider, textTransform: "uppercase" as const }}>
+                    {lang === "en" ? "Month 1" : "Месяц 1"}
+                  </span>
+                  <span style={{ ...preset.nano, color: textColor.muted, letterSpacing: tracking.wider, textTransform: "uppercase" as const }}>
+                    {lang === "en" ? "Month 2" : "Месяц 2"}
+                  </span>
+                  <span style={{ ...preset.nano, color: "#F97316", letterSpacing: tracking.wider, textTransform: "uppercase" as const }}>
+                    {lang === "en" ? "Launch" : "Запуск"}
+                  </span>
+                </div>
+                <div style={{ position: "relative" }}>
+                  <div style={{ display: "flex", height: "10px", borderRadius: "8px", overflow: "hidden", gap: "3px" }}>
+                    {VED_TIMELINE.map(p => (
+                      <div key={p.num} style={{ flex: p.days, background: p.color }} />
+                    ))}
+                  </div>
+                  <div style={{ position: "absolute", top: "-4px", left: "50%", transform: "translateX(-50%)", width: "1px", height: "18px", background: "rgba(255,255,255,0.18)" }} />
+                </div>
+              </motion.div>
+
+              {/* Phase cards */}
+              <div className="timeline-phase-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "16px" }}>
+                {VED_TIMELINE.map((phase, i) => (
+                  <motion.div
+                    key={phase.num}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.06, ease }}
+                    style={{
+                      padding: "20px",
+                      background: `${phase.color}0d`,
+                      border: "1px solid rgba(255,255,255,0.06)",
+                      borderTop: `2px solid ${phase.color}`,
+                      borderRadius: "14px",
+                    }}
+                  >
+                    <div style={{ ...preset.nano, color: phase.color, letterSpacing: tracking.wider, marginBottom: "10px" }}>{phase.num}</div>
+                    <div style={{ ...preset.small, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 12px", lineHeight: leading.snug }}>
+                      {lang === "en" ? phase.en : phase.ru}
+                    </div>
+                    <div style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      padding: "3px 10px",
+                      borderRadius: "20px",
+                      background: `${phase.color}22`,
+                      border: `1px solid ${phase.color}44`,
+                    }}>
+                      <span style={{ ...preset.nano, color: phase.color, letterSpacing: tracking.wide }}>
+                        {lang === "en" ? phase.durEn : phase.durRu}
+                      </span>
+                    </div>
+                    {phase.noteEn && (
+                      <div style={{ ...preset.nano, color: textColor.muted, lineHeight: leading.loose, marginTop: "12px", fontStyle: "italic" }}>
+                        {lang === "en" ? phase.noteEn : phase.noteRu}
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            <style>{`
+              @media(max-width:1024px){ #ved-timeline .timeline-phase-grid { grid-template-columns: repeat(4, 1fr) !important; } }
+              @media(max-width:900px){  #ved-timeline .timeline-phase-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+              @media(max-width:480px){  #ved-timeline .timeline-phase-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; } }
+            `}</style>
           </Section>
 
           {/* Final Design showcases */}
@@ -2438,7 +2610,7 @@ export function CasePage() {
               <div className="solution-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "56px", alignItems: "start" }}>
                 <motion.div {...inView}>
                   <h2 style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 20px" }}>
-                    {lang === "en" ? "Design decisions" : "Дизайн-решения"}
+                    {lang === "en" ? "Design decisions" : "Дизайн-решени��"}
                   </h2>
                   <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose }}>
                     {t(cs.solution.description, lang)}
@@ -2612,28 +2784,14 @@ export function CasePage() {
       <Section id="testing">
         <div className="section-inner">
           <SectionLabel num="07" label={lang === "en" ? "Testing" : "Тестирование"} />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "56px", alignItems: "start" }}>
-            <motion.div {...inView}>
-              <h2 style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 20px" }}>
-                {lang === "en" ? "Validating the solution" : "��ал��дация решения"}
-              </h2>
-              <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose }}>
-                {t(cs.testing.description, lang)}
-              </p>
-            </motion.div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              {cs.testing.findings.map((f, i) => (
-                <motion.div key={i} initial={{ opacity: 0, x: 12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.08, ease }}
-                  style={{ display: "grid", gridTemplateColumns: "24px 1fr", gap: "12px", alignItems: "start" }}
-                >
-                  <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "rgba(74,222,128,0.10)", border: "1px solid rgba(74,222,128,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "2px" }}>
-                    <span style={{ ...preset.nano, color: textColor.success, fontWeight: weight.semibold }}>{i + 1}</span>
-                  </div>
-                  <p style={{ ...preset.small, color: textColor.secondary, margin: 0, lineHeight: leading.loose }}>{t(f, lang)}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          <motion.div {...inView} style={{ maxWidth: "640px" }}>
+            <h2 style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 20px" }}>
+              {lang === "en" ? "Testing" : "Тестирование"}
+            </h2>
+            <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose }}>
+              {t(cs.testing.description, lang)}
+            </p>
+          </motion.div>
         </div>
       </Section>
 
@@ -2642,7 +2800,7 @@ export function CasePage() {
         <div className="section-inner">
           <SectionLabel num="08" label={lang === "en" ? "Results & Impact" : "Результаты и эффект"} />
           <motion.h2 {...inView} style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 48px", maxWidth: "600px" }}>
-            {lang === "en" ? "Measurable outcomes" : "Измеримые результаты"}
+            {t(cs.results.businessImpact, lang)}
           </motion.h2>
 
           {/* Metrics — same visual pattern as Hero section */}
@@ -2657,11 +2815,6 @@ export function CasePage() {
               </div>
             ))}
           </motion.div>
-
-          {/* Business impact */}
-          <motion.p {...inView} style={{ ...preset.body, color: textColor.secondary, margin: "0 0 48px", lineHeight: leading.loose, maxWidth: "720px" }}>
-            {t(cs.results.businessImpact, lang)}
-          </motion.p>
 
         </div>
       </Section>
@@ -2690,9 +2843,9 @@ export function CasePage() {
         </div>
       </Section>
 
-      {/* ── FOOTER NAV ──────────────────────────────────────────────────── */}
-      <div style={{ padding: "60px 0 80px", borderTop: "1px solid rgba(255,255,255,0.055)" }}>
-        <div className="section-inner" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
+      {/* ── BACK NAV ──────────────────────────────────────────────────────── */}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.055)", padding: "28px 0 0" }}>
+        <div className="section-inner">
           <Link
             to="/#projects"
             style={{ display: "inline-flex", alignItems: "center", gap: "8px", ...preset.small, color: textColor.muted, textDecoration: "none" }}
@@ -2702,37 +2855,10 @@ export function CasePage() {
             <ArrowLeft size={13} strokeWidth={1.5} />
             {lang === "en" ? "Back to all work" : "Все проекты"}
           </Link>
-          <a
-            href="https://t.me/pogodinyury"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex", alignItems: "center", gap: "8px",
-              ...preset.small, color: textColor.accent, textDecoration: "none",
-              padding: "10px 20px", borderRadius: "99px",
-              border: "1px solid rgba(99,102,241,0.35)",
-              background: "rgba(99,102,241,0.06)",
-              transition: "background 0.2s ease, border-color 0.2s ease",
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.background = "rgba(99,102,241,0.12)";
-              el.style.borderColor = "rgba(99,102,241,0.55)";
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.background = "rgba(99,102,241,0.06)";
-              el.style.borderColor = "rgba(99,102,241,0.35)";
-            }}
-          >
-            {/* Telegram icon */}
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink: 0 }}>
-              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-            </svg>
-            {lang === "en" ? "Text me in Telegram" : "Написать в Telegram"}
-          </a>
         </div>
       </div>
+
+      <ContactSection lang={lang} />
 
       {/* Responsive overrides */}
       <style>{`

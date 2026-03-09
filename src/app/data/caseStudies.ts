@@ -162,7 +162,7 @@ const paymentFlow: FullCaseStudy = {
       { label: { en: "Contact info",   ru: "Контактные данные" }, pct: 88 },
       { label: { en: "Payment method", ru: "Способ оплаты"   }, pct: 71 },
       { label: { en: "Card entry",     ru: "Ввод карты"      }, pct: 48 },
-      { label: { en: "3DS Auth",       ru: "3DS аутентификация" }, pct: 38 },
+      { label: { en: "3DS Auth",       ru: "3DS аутентификац" }, pct: 38 },
       { label: { en: "Confirmation",   ru: "Подтверждение"   }, pct: 38 },
     ],
   },
@@ -183,7 +183,7 @@ const paymentFlow: FullCaseStudy = {
   research: {
     summary: {
       en: "I reviewed the existing widget against Nielsen's 10 heuristics, audited 8 competitor deposit flows across 40+ screens, and ran a moderated prototype test with 8 users to validate the redesign direction.",
-      ru: "Провёл эвристический обзор виджета по принципам Нильсена, раобрал депозитные флоу 8 конкурентов на 40+ экранах и прогнал модерируемый тест прототипа с 8 пользователями, чтобы проверить направление редизайна.",
+      ru: "Провёл эвристический обзор виджета по принципам Нильсена, раобрал депозитные флоу 8 конкурентов на 40+ экранах и прогал модерируемый тест прототипа с 8 пользователями, чтобы проверить направление редизайна.",
     },
     methods: [
       {
@@ -205,7 +205,7 @@ const paymentFlow: FullCaseStudy = {
     insights: [
       { text: { en: "\"Users didn't understand why payment failed — they just saw a generic error and left.\"", ru: "«Пользователи не понимали, почему оплата не прошла  они видели обобщённую ошибку и уходили.»" } },
       { text: { en: "\"The 3DS redirect felt like leaving the product. 40% assumed they were being phished.\"", ru: "«Редирект 3DS ощущался как выход из продукта. 40% думали, что их фишингуют.»" } },
-      { text: { en: "\"Autofill was broken on mobile — users typed the 16-digit card number by hand every time.\"", ru: "«Автозаполнение не работало на мобиле — пользователи вводили 16 цифр карты вручную.»" } },
+      { text: { en: "\"Autofill was broken on mobile — users typed the 16-digit card number by hand every time.\"", ru: "«Автозаполнение не работало на мобиле — пользователи вводили 16 цифр карты вруную.»" } },
     ],
     uiAnalysis: {
       totalIssues: 4,
@@ -234,7 +234,7 @@ const paymentFlow: FullCaseStudy = {
         {
           id:          4,
           title:       { en: "Amount input competes with method grid", ru: "Экран ввода суммы конкурирует с плиткой методов" },
-          description: { en: "Amount entry and method selection share one screen — Nielsen #8: combining distinct steps overloads the user and splits focus.", ru: "Ввод суммы и выбор метода на одном экране — нарушение эвристики №8: объединение разных шагов перегружает пользователя." },
+          description: { en: "Amount entry and method selection share one screen — Nielsen #8: combining distinct steps overloads the user and splits focus.", ru: "Ввод суммы и выбор метода на одном экране — нарушение эвристики №8: объеднение разных шагов перегружает пользователя." },
           insight:     { en: "Users were unsure which step to complete first", ru: "Пользователи не понимали, с какого шага начинать" },
           decision:    { en: "Separate amount step from method grid; normalize amount input UI", ru: "Отделить шаг ввода суммы от плитки методов, нормализовать UI ввода суммы" },
         },
@@ -251,7 +251,7 @@ const paymentFlow: FullCaseStudy = {
           image: "__figma:1xbet-competitor__",
           observation: {
             en: "1xbet groups payment methods by type, so the user can quickly find and select the one they need. This reduces time-to-decision and can directly improve CR to Deposit.",
-            ru: "1xbet группирует методы оплаты по типу - пользователь быстро находит нужный и не тратит время на сканирование всего списка. Это сокращает время принятия решения и может напрямую влиять на CR to Deposit.",
+            ru: "1xbet группирует методы оплаты по типу - пользователь быстро находит нужный и не тратит время на сканирование всего списка. Это сокращает время принятия решения и может напрмую влиять на CR to Deposit.",
           },
           takeaway: {
             en: "Introduce method grouping by type to reduce cognitive load and help users find their preferred option faster.",
@@ -271,27 +271,15 @@ const paymentFlow: FullCaseStudy = {
           },
         },
         {
-          name: "Stripe Checkout",
-          image: "https://images.unsplash.com/photo-1772734645532-a200e06f105d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaW50ZWNoJTIwYXBwJTIwY2FyZCUyMHBheW1lbnQlMjBtb2JpbGV8ZW58MXx8fHwxNzcyOTczMzI2fDA&ixlib=rb-4.1.0&q=80&w=400",
+          name: "SpinBetter",
+          image: "__figma:spinbetter-competitor__",
           observation: {
-            en: "Real-time card brand detection from the first 4 digits. Input auto-formats to card type (16 vs 15 digits), reducing entry errors before submission.",
-            ru: "Определение бренда карты по первым 4 цифрам в реальном времени. Пол автоматически форматируется под тип карты, снижая ошибки ввода.",
+            en: "In the crypto section, additional notifications inform users to check the crypto network so they don't make a mistake and lose their deposit.",
+            ru: "В криптовалюте есть дополнительные нотификации о том, что важно проверить сеть крипты, чтобы юзеры не ошиблись и не потеряли депозит.",
           },
           takeaway: {
-            en: "Micro-interactions in the card field (auto-format, brand icon) dramatically reduce cognitive load for a user who types infrequently.",
-            ru: "Микровзаимодействия в поле карты (автоформат, иконка бренда) резко снижают когнитивную нагрузку для редко вводящего данные пользователя.",
-          },
-        },
-        {
-          name: "Wise",
-          image: "https://images.unsplash.com/photo-1664490697404-5c84e8829f49?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjB3YWxsZXQlMjB0cmFuc2ZlciUyMHNjcmVlbnxlbnwxfHx8fDE3NzI5NzMzMjd8MA&ixlib=rb-4.1.0&q=80&w=400",
-          observation: {
-            en: "Deposit amount selection uses a calculator-style large input as the primary hero element. No competing CTAs — the amount field owns the entire first screen.",
-            ru: "Выбор суммы депозита использует большой инпут в стиле калькулятора как главный элемент экрана. Нет конкурирующих CTA — поле суммы владеет всем первым экраном.",
-          },
-          takeaway: {
-            en: "Making the amount input the only hero element reduces first-interaction hesitation and communicates the user's primary goal back to them.",
-            ru: "Единственный hero-элемент — поле суммы — снижает нерешительность первого взаимодействия и отражает главную цель ползователя.",
+            en: "Introduce a clear tooltip that highlights the selected cryptocurrency network to prevent user errors and deposit loss.",
+            ru: "Внедрить удобную подсказку, сделать акцент на выбранной сети криптовалюты.",
           },
         },
       ],
@@ -343,7 +331,7 @@ const paymentFlow: FullCaseStudy = {
         title:       { en: "Step-by-step wizard", ru: "Пошаговый мастер" },
         description: { en: "Explicit progress bar with labelled steps. Classic checkout pattern with clear navigation.", ru: "Явный прогресс-бар с подписанными шагами. Классический паттерн с чёткой навигацией." },
         pros:        { en: "Users always know where they are in the flow.", ru: "Пользователь всегда знает, где он находится." },
-        cons:        { en: "More taps required; doesn't solve the 3DS confusion at source.", ru: "Больше нажатий; не решает проблему замешательства с 3DS." },
+        cons:        { en: "More taps required; doesn't solve the 3DS confusion at source.", ru: "Больше нажатий; не решает пролему замешательства с 3DS." },
         chosen:      false,
       },
     ],
@@ -351,7 +339,7 @@ const paymentFlow: FullCaseStudy = {
   solution: {
     description: {
       en: "The final solution combined progressive disclosure with three targeted fixes for the top drop-off moments: contextual error recovery, an in-app 3DS overlay, and real-time card type detection.",
-      ru: "Финальное решение совместило прогрессивное раскрытие с тремя точечными исправлениями для ключевых моментов оттока: контекстное восстановление после ошибок, оверлей 3DS внутри приложения и определение типа карты в реальном времени.",
+      ru: "Финальное решение совместило прогрессивное раскрытие с тремя точечными исправлениями для ключевых моментов оттока: контекстное восстановление после ошибок, оверлей 3DS внутри приложения и определение типа крты в реальном времени.",
     },
     decisions: [
       {
@@ -360,7 +348,7 @@ const paymentFlow: FullCaseStudy = {
       },
       {
         title:     { en: "Native 3DS in-app overlay", ru: "Нативный оверлей 3DS внутри приложения" },
-        rationale: { en: "Keep authentication in a modal overlay instead of redirecting to the bank's external page. Users never feel they've left the product. Reduced 3DS-step drop-off by 60% in A/B test.", ru: "Аутентификация в модальном оверлее вместо редиректа на страницу банка. Пользователь не ощущает, что покидает продукт. Снизило отток на шаге 3DS на 60% в A/B тесте." },
+        rationale: { en: "Keep authentication in a modal overlay instead of redirecting to the bank's external page. Users never feel they've left the product. Reduced 3DS-step drop-off by 60% in A/B test.", ru: "Аутентификация в модальном оверлее вместо редиректа на страницу банка. Пользователь не ощущает, что покидает продукт. Снзило отток на шаге 3DS на 60% в A/B тесте." },
       },
       {
         title:     { en: "Real-time card type detection", ru: "Определение типа карты в реальном времени" },
@@ -370,21 +358,20 @@ const paymentFlow: FullCaseStudy = {
   },
   testing: {
     description: {
-      en: "The prototype was tested in three rounds: a Maze unmoderated test for task completion data, three moderated sessions for qualitative depth, and a live A/B test at 5% traffic before full rollout.",
-      ru: "Прототип тестировался в три раунда: немодерируемый тест в Maze для данных о выполнении задач, три модерируемых сессии для качественных инсайтов и живой A/B тест на 5% трафика перед полным роллаутом.",
+      en: "I tested the product at every stage: built quick prototypes and ran usability tests with groups of respondents. Used card sorting to identify the most intuitive flow order for users. Over the course of the project, around 30 design reviews were conducted as the widget was rolled out in stages (deposit first, then withdrawal, FAQ, and deposit history). Three A/B tests were also run on 5% of new-registrant traffic during development.",
+      ru: "Я тестировал продукт на всех этапах. Собирал пробные прототипы и проводил юзабилити-тесты на группе респондентов. Тестировали через Card Sorting, чтобы понять удобный для пользователей порядок флоу. За 3 года было проведено около 30 дизайн-ревью (разработка выкатывала виджет порционно: сначала депозит, потом вывод, далее FAQ и история пополнений). Также в процессе разработки было проведено 3 A/B теста на 5% аудитории новорегов.",
     },
     findings: [
       { en: "Maze unmoderated (n=48): task success rate improved from 54% → 89% across all flow steps.", ru: "Maze (n=48): успешность задач выросла с 54% до 89% по всем шагам." },
       { en: "3 moderated sessions post-prototype: zero confusion at the 3DS step. Users described it as 'feels like the app knows what it's doing'.", ru: "3 модерируемые сессии после прототипа: ноль замешательства а шаге 3DS. Пользователи: «ощущение, что приложение знает, что делает»." },
-      { en: "A/B test (5% traffic, 2 weeks): +18% checkout completion rate — enough confidence for full rollout.", ru: "A/B тест (5% трафика, 2 недели): +18% завершённости чекута — достаточная уверенность для полного роллаута." },
+      { en: "A/B test (5% traffic, 2 weeks): +18% checkout completion rate — enough confidence for full rollout.", ru: "A/B тест (5% трафика, 2 недели): +18% завершённости чекута  достаточная уверенность для полного роллаута." },
     ],
   },
   results: {
     metrics: [
-      { value: "+34%", label: { en: "Conversion",                   ru: "Конверсия"          }, direction: "up"   },
-      { value: "−2×",  label: { en: "Drop-off at card entry",       ru: "Отток на вводе карты" }, direction: "down" },
-      { value: "+18",  label: { en: "CSAT points (checkout)",       ru: "Пунктов CSAT"       }, direction: "up"   },
-      { value: "−65%", label: { en: "Payment support tickets /wk",  ru: "Тикеты поддержки /нед" }, direction: "down" },
+      { value: "+2–4%", label: { en: "Deposit CR",           ru: "CR на депозит"            }, direction: "up" },
+      { value: "+2–4%", label: { en: "First deposit",        ru: "Первый депозит"            }, direction: "up" },
+      { value: "+3–5%", label: { en: "Bonus deposit share",  ru: "Доля бонусного депозита"  }, direction: "up" },
     ],
     beforeAfter: [
       { label: { en: "Drop-off at card entry",  ru: "Отток на вводе карты" }, before: "48%", after: "22%" },
@@ -393,14 +380,14 @@ const paymentFlow: FullCaseStudy = {
       { label: { en: "CSAT (checkout)",          ru: "CSAT (чекаут)"       }, before: "3.2", after: "4.1 / 5" },
     ],
     businessImpact: {
-      en:  "The redesigned flow contributed to an estimated €2.4M additional monthly revenue based on recovered transactions. The reduction in support tickets freed two FTEs for product work.",
-      ru:  "Редизайн флоу обеспечил около €2,4 млн дополнительной ежемесячной выручки за счёт восстановленных транзакций. Снижение тикетов высвободио двух FTE для продуктовой работы.",
+      en:  "Our team achieved the goals set for us: key metrics did not degrade, we showed metric growth, and the redesign was delivered on time.",
+      ru:  "Наша команда смогла добиться целей, которые поставили перед нами: ключвые метрики не деградировали, мы показали рост метрик, редизайн выполнен в срок.",
     },
   },
   learnings: [
-    { en: "Error states are UX debt — every generic message is a missed opportunity to guide the user toward success.", ru: "Состояния ошибок — это технический долг UX. Каждое обобщённое сообщение — упущенная озможность направить пользователя к успеху." },
-    { en: "3DS is where trust breaks. Keeping authentication in-app — even in a modal — dramatically reduces user anxiety compared to external redirects.", ru: "3DS — место, где доверие рвётся. Держать аутентификацию внутри приложения, даже в модале, резко снижает тревожность по сравнению с внешним редиректом." },
-    { en: "Involve engineering early when prototyping real-time field interactions. What looked trivial in Figma required 3 sprints to implement correctly on mobile.", ru: "Подключайте инженеров заранее при прототипировании взаимодействий в реальном времени. То, что выглядело тривиально в Figma, потребовало 3 спринта для правильной реализации на мобиле." },
+    { en: "Product teams managing payments need not only convenient administration tools, but also tools for experimentation. The method grouping feature, for example, gave country managers the ability to create custom promo groups.", ru: "Продуктовой команде в рамках управления платежами нужны не только удобные инструменты для администрирования, но и инструменты для экспериментов. Функция группировки методов, например, позволила дать кантри менеджерам возможность добавлять кастомные промо группы." },
+    { en: "Our team initially thought it was better to add as many explanations and instructions for the user as possible - to explain how the bonus system works. It turned out that the more you explain to a user at the deposit amount step, the more they doubt whether to top up at all.", ru: "Наша команда сначала считала, что лучше добавить максимум пояснений, инструкций для пользователя. Объяснить ему как работает бонусная система. Оказалось, что чем больше ты объясняешь пользователю на этапе ввода суммы, тем больше он сомневается в пополнении." },
+    { en: "During the project I needed to explain RTL layout logic for specific locales to the engineering team. I put together a list of principles and rules. This approach turned out to be a mistake. After errors were found during design reviews, I designed all key screens in RTL so that the team had fewer questions and made fewer mistakes.", ru: "В процессе работы мне было необходимо объяснить разработке логику RTL для отдельных локалей. Я составил список принципов и правил. Данное решение оказалось ошибочным. После обнаруженных ошибок в дизайн ревью я задизайнил все ключевые экраны в RTL, чтобы у разработки было меньше вопросов и ошибок." },
   ],
   nextSteps: [
     { title: { en: "One-click checkout for returning users", ru: "Оплата в один клик для постоянных пользователей" }, description: { en: "Save payment methods securely and surface them at checkout start. Estimated +12% conversion for returning cohort.", ru: "Сохранять методы оплаты езопасно и предлагать их в начале чекаута. Прогноз: +12% конверсии для возвращающейся когорты." } },
@@ -418,10 +405,10 @@ const analyticsDashboard: FullCaseStudy = {
   coverImage:
     "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxTYWFTJTIwYW5hbHl0aWNzJTIwZGFyayUyMGRhc2hib2FyZCUyMGRhdGF8ZW58MXx8fHwxNzcyOTU2NTQxfDA&ixlib=rb-4.1.0&q=80&w=1080",
   meta: {
-    role:     { en: "Senior Product Designer", ru: "Старший продуктовый дизайнер" },
-    team:     { en: "PM · 3 Engineers · UX Researcher", ru: "PM · 3 инженера · UX-исследователь" },
-    timeline: { en: "12 weeks · Q1–Q2 2023", ru: "12 недель · Q1–Q2 2023" },
-    tools:    "Figma · FullStory · Amplitude · Notion",
+    role:     { en: "Art Director", ru: "Арт-директор" },
+    team:     { en: "2 Developers · 1 DevOps", ru: "2 разработчика · 1 DevOps" },
+    timeline: { en: "2 months · 2025", ru: "2 месяца · 2025" },
+    tools:    "Figma · Яндекс Метрика",
   },
   tagline: {
     en: "Modular dashboard redesign that drove 4× engagement and cut time-to-insight from 40 to 9 minutes.",
@@ -429,20 +416,20 @@ const analyticsDashboard: FullCaseStudy = {
   },
   overview: {
     product: {
-      en: "Modular analytics platform (Ved) used by 1,400+ ops teams across 12 countries to monitor KPIs and act on data.",
-      ru: "Модульная аналитическая платформа Веды для 1 400+ операционных команд в 12 странах — мониторинг KPI и принятие ешений на основе данных.",
+      en: "A new digital media project by Vedomosti for younger audiences. The platform combines news, long reads, and vertical Reels video.",
+      ru: "Новый медиа-проект Ведомостей для молодой аудитории. Платформа объединяет новости, лонгриды, и вертикальные Reels видео.",
     },
     problem: {
-      en: "Users couldn't find the metrics they needed — most resorted to exporting raw CSVs and working in Excel instead.",
-      ru: "Пользователи не могли найти нужные метрики — большинство выгружало сырые CSV и работало в Excel.",
+      en: "Vedomosti's main site was built for a traditional audience and heavy news formats. It was a poor fit for younger readers and modern content consumption habits.",
+      ru: "Основной сайт Ведомостей был рассчитан на традиционную аудиторию и тяжёлый новостной формат. Он плохо подходил для молодой аудитории и современного потребления контента.",
     },
     users: {
-      en: "Operations managers and analysts tracking business KPIs, conversion funnels, and support metrics daily.",
-      ru: "Операционные менеджеры и аналитики, ежедневно отслеживающие KPI, воронки конверсии и метрики поддержки.",
+      en: "Young audience who reads news on their phone, scrolls quickly through feeds, and expects a simple and visually clear presentation format.",
+      ru: "Молодая аудитория, которая читает новости в телефоне, быстро скроллит ленту и ожидает простой и визуально понятный формат подачи.",
     },
     businessContext: {
-      en: "Dashboard limitations were cited as a renewal blocker by enterprise accounts — directly threatening retention revenue.",
-      ru: "Ограничения дашборда упоминались энтерпрайз-клиентами как блокер продления — прямая угроза выручке от удержания.",
+      en: "Attract a new audience, test new content formats and build a standalone product without disrupting the core Vedomosti brand and site structure, with a launch within 2 months.",
+      ru: "Привлечь новую аудиторию, протестировать новые форматы контента и создать отдельный продукт, не ломая основной бренд и структуру сайта Ведомостей, а также запуск в течение 2 месяцев.",
     },
   },
   problem: {
@@ -463,7 +450,7 @@ const analyticsDashboard: FullCaseStudy = {
       metric: { en: "Amplitude widget engagement event",          ru: "Amplitude — событие взаимодействия с виджетом" },
     },
     {
-      title:  { en: "Reduce time-to-insight from 40 min to <15 min", ru: "Сократить время до инсайта с 40 до <15 мин" },
+      title:  { en: "Reduce time-to-insight from 40 min to <15 min", ru: "Сократит время до инсайта с 40 до <15 мин" },
       metric: { en: "Maze unmoderated test timer",                    ru: "Тамер немодерируемого теста Maze" },
     },
     {
@@ -473,110 +460,73 @@ const analyticsDashboard: FullCaseStudy = {
   ],
   research: {
     summary: {
-      en: "The research phase involved contextual inquiry, FullStory analysis, and card sorting to understand user needs and identify key issues in the analytics dashboard.",
-      ru: "Фаза исследования включала контекстное интервью, анализ FullStory и карточную сортировку для понимания потребностей пользователей и выявления ключевых проблем в аналитическом дашборде.",
+      en: "Analysed 50+ Russian and international media sites to map content presentation patterns, navigation approaches, and visual identity choices aimed at younger audiences. Also researched colour psychology across 30+ global brands to ground the accent palette decision.",
+      ru: "Проанализировал более 50 российских и зарубежных медиасайтов: паттерны подачи контента, навигационные решения и выбор визуальной идентичности для молодой аудитории. Отдельно изучил цветовую психологию на базе 30+ мировых брендов для обоснования акцентной палитры.",
     },
     methods: [
       {
-        name:        { en: "Contextual inquiry", ru: "Контекстное интервью" },
-        description: { en: "Shadowed 8 ops managers in their natural workflow. Mapped jobs-to-be-done and surface-level mental models.", ru: "Наблюдение за 8 опс-менеджерами в реальной работе. Построены JTBD-карты и ментальные модели." },
-        stat:        "n=8",
+        name:        { en: "Competitive analysis", ru: "Анализ конкурентов" },
+        description: {
+          en: "Reviewed 50+ Russian and international media sites. Focused on content layout, typography hierarchy, navigation patterns, and how each site adapts to mobile-first reading habits.",
+          ru: "Проанализировал более 50 российских и зарубежных медиасайтов. Фокус на компоновке контента, типографической иерархии, паттернах навигации и адаптации к мобильному потреблению.",
+        },
+        stat: "50+ sites",
       },
       {
-        name:        { en: "FullStory analysis", ru: "Анализ FullStory" },
-        description: { en: "Analysed 500+ sessions. Identified scroll dead zones and rage-click clusters concentrated on the filter bar.", ru: "Анализ 500+ сессий. Выявлены «мёртвые зоны» прокрутки и кластеры ярости на панели фильтров." },
-        stat:        "500+ sessions",
-      },
-      {
-        name:        { en: "Card sorting (online)", ru: "Карточная сортировка" },
-        description: { en: "22 participants grouped 14 widget types. Revealed 4 natural clusters vs. the 2 the team assumed.", ru: "22 участника сгруппировали 14 типов виджетов. Выявлено 4 естественных кластера вместо предполагаемых 2." },
-        stat:        "n=22",
+        name:        { en: "Colour psychology research", ru: "Исследование цветовой психологии" },
+        description: {
+          en: "Researched colour associations used by 30+ global brands to ground the accent palette decision. Purple spectrum was chosen for its links to prestige, creativity and innovation.",
+          ru: "Изучил цветовые ассоциации 30+ мировых брендов для обоснования выбора акцентной палитры. Фиолетовый спектр выбран за связь с престижем, креативом и инновациями.",
+        },
+        stat: "30+ brands",
       },
     ],
     insights: [
-      { text: { en: "\"I know the data I need is here, but I can never find it from the top — I always have to scroll forever.\"", ru: "«Я знаю, что нужные данные здесь, но никогда не могу найти их сразу — всегда нужно долго прокручивать.»" } },
-      { text: { en: "\"The date range picker affects all charts at once — but I often need different time windows for different metrics.\"", ru: "«Выбор диапазона дат влияет на все графики сразу — а мне часто нужны разные временные окна для разных метрик.»" } },
-      { text: { en: "\"The colour scheme makes every chart look equally important. I can't tell at a glance what needs my attention.\"", ru: "«Цветовая схема делает все графики одинаково важными. Я не могу с первого взгляда понять, на что обратить внимание.»" } },
+      { text: { en: "\"Western youth media relies on visual-first layouts with bold editorial typography — an approach that instantly signals quality to young readers.\"", ru: "«Западные молодёжные медиа делают ставку на визуально-ориентированные макеты с яркой редакционной типографикой — это сразу сигнализирует о качестве молодой аудитории.»" } },
+      { text: { en: "\"Russian media sites are still heavy and information-dense. White space and breathing room are underused — a clear opportunity for differentiation.\"", ru: "«Российские медиасайты по-прежнему перегружены информацией. Белое пространство почти не используется — очевидное конкурентное преимущество.»" } },
+      { text: { en: "\"Purple is consistently associated with prestige and innovation brands. Choosing it over the typical news red or blue palette immediately differentiates the product.\"", ru: "«Фиолетовый стабильно ассоциируется с престижем и инновациями. Выбор в его пользу вместо типичной красно-синей новостной палитры сразу выделяет продукт.»" } },
     ],
     competitiveAnalysis: {
       stat: {
-        en: "4 competitors · 30+ screens analysed",
-        ru: "4 конкурента · 30+ проанализированных экранов",
+        en: "50+ media sites analysed",
+        ru: "50+ медиасайтов проанализировано",
       },
       competitors: [
         {
-          name: "Mixpanel",
-          image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400",
+          name: "Teen Vogue",
+          image: "__figma:teenvogue-competitor__",
           observation: {
-            en: "Event-level funnel builder lets users define custom conversion steps without SQL. The dashboard surfaces the most-viewed reports by default, reducing time-to-insight for new users.",
-            ru: "Конструктор воронок на уровне событий позволяет настраивать шаги конврсии без SQL. Дашборд по умолчанию показывает самые просматриваемые отчёты — снижает время до инсайта для новых пользователей.",
+            en: "Editorial-first layout with a strong full-width hero image. Bold typography hierarchy separates features from news. Visual-led storytelling aligns with how young audiences naturally scan content.",
+            ru: "Редакционная компоновка с мощным Hero-изображением во всю ширину. Чёткая типографическая иерархия разделяет фичерсы и новости. Визуально ориентированный нарратив совпадает с тем, как молодая аудитория сканирует контент.",
           },
           takeaway: {
-            en: "Seeding the default view with the most-used content dramatically reduces blank-state anxiety and shortens time-to-value on day 1.",
-            ru: "Заполнение дефолтного вида наиболее используемым контентом резко снижает «синдром чистого листа» и сокращает время до ценности с первого дня.",
+            en: "Use a strong visual hierarchy with large hero images. Typography should guide the eye through the page rather than compete with imagery.",
+            ru: "Использовать мощную визуальную иерархию с крупными Hero-изображениями. Типографика должна вести взгляд по странице, а не конкурировать с визуалом.",
           },
         },
         {
-          name: "Tableau",
-          image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400",
+          name: "Paper",
+          image: "__figma:paper-competitor__",
           observation: {
-            en: "Drag-and-drop shelf model gives analysts full flexibility, but the blank canvas created paralysis for ops managers unfamiliar with data modelling. Power comes at the cost of first-run clarity.",
-            ru: "Drag-and-drop модель полок даёт аналитикам полную гибкость, но пустой холст парализовал опс-менеджеров, незнакомых с моделированием данных. Мощь за счёт ясности первого запуска.",
+            en: "Minimalist article page: half-screen image on the left, structured metadata on the right. Clean separation of visual and informational layers enables deep reading without distraction.",
+            ru: "Минималистичная страница статьи: изображение на полэкрана слева, структурированные метаданные справа. Чёткое разделение визуального и информационного слоёв даёт возможность читать без отвлечений.",
           },
           takeaway: {
-            en: "Unlimited flexibility without opinionated defaults creates a blank-state problem. Good defaults for 80% of users are worth more than infinite flexibility for 20%.",
-            ru: "Безграничная гибкость без дефолтов создаёт проблему чистого листа. Хорошие дефолты для 80% пользователей ценнее бесконечной гибкости для 20%.",
+            en: "Separate visual content from metadata. Give images room to breathe to create a premium magazine reading experience.",
+            ru: "Разделить визуальный контент и метаданные. Дать изображениям пространство, чтобы создать ощущение журнального чтения.",
           },
         },
         {
-          name: "Amplitude",
-          image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400",
+          name: "Color Research",
+          image: "__figma:colorpalette-research__",
           observation: {
-            en: "Per-chart date pickers and independent segment selectors allow cross-period and cross-segment comparison in a single view. Analysts praised this as removing the need to open multiple tabs.",
-            ru: "Отдельные выбиратели дат и сегментов на каждый график позволяют сравнивать периоды и сегменты в одном виде. Аналитики отмечали, что это убирает необходимость открывать несколько вкладок.",
+            en: "Purple is used by 30% of prestige and royalty brands and 25% of innovation-focused products globally. The gradient (#8B6CE4 to #362061) combines prestige with creativity — a palette rare in news media.",
+            ru: "Фиолетовый используют 30% брендов, ассоциирующихся с роялти и престижем, и 25% инновационных продуктов. Градиент (#8B6CE4 до #362061) совмещает престиж с креативом — такая палитра редка в новостных медиа.",
           },
           takeaway: {
-            en: "Per-widget date and segment controls directly remove the #1 pain point — a single global filter that forces users to lose context whenever they need a different time window.",
-            ru: "Независимые элементы управления на виджет устраняют боль №1 — единый глобальный фильтр, заставляющий терять контекст при смене временного окна.",
+            en: "Chose a linear gradient (99deg, #8B6CE4 to #362061) as the primary accent. Purple differentiates the product from the typical news red or blue spectrum and reinforces a premium, forward-thinking feel.",
+            ru: "Выбран линейный градиент (99deg, #8B6CE4 до #362061) как основной акцент. Фиолетовый выделяет продукт на фоне типичной красно-синей палитры новостей и усиливает премиальное, современное позиционирование.",
           },
-        },
-        {
-          name: "Grafana",
-          image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400",
-          observation: {
-            en: "Panel-based dashboard with row collapsing and variable-driven filters. Prominence is implicit — all panels are equal size by default, requiring manual resize to create hierarchy.",
-            ru: "Дашборд на основе панелей со сворачиванием строк и переменными фильтрами. Значимость неявная — все панели одного размера по умолчанию, иерархию нужно создавать вручную.",
-          },
-          takeaway: {
-            en: "When hierarchy is not built into the system, users default to equal-weight layouts — confirming that our 3-tier prominence model (Hero / Standard / Compact) needs to be structural, not optional.",
-            ru: "Без встроенной иерархии пользователи создают плоские макеты одинакового веса — подтверждает: трёхуровневая значимость (Hero / Standard / Compact) должна быть структурной, а не опциональной.",
-          },
-        },
-      ],
-    },
-    uiAnalysis: {
-      totalIssues: 3,
-      issues: [
-        {
-          id:          1,
-          title:       { en: "Scroll dead zones", ru: "Мёртвые зоны прокрутки" },
-          description: { en: "Users often scroll past the metrics they need, as the dashboard is too long and lacks clear navigation.", ru: "Пользователи часто рокручивают мимо нужных метрик, так как дашборд слишком длинный и не имеет ясной навигации." },
-          insight:     { en: "Long dashboards with poor navigation lead to user frustration and missed insights.", ru: "Длинные дашборды с плохой навигацией вызывают разочарование пользователей и пропуск важных инсайтов." },
-          decision:    { en: "Implement a modular drag-and-drop system to allow users to customize their dashboard views.", ru: "Реализовать модульную систему drag-and-drop, чтобы ользователи могли настраивать свои виды даборда." },
-        },
-        {
-          id:          2,
-          title:       { en: "Date range picker affecting all charts", ru: "Выбор диапазона дат влияет на все графики" },
-          description: { en: "The date range picker changes all charts at once, making it difficult to compare different metrics over different time periods.", ru: "Выбор диапазона дат изменяет все графики одновременно, что затрудняет сравнение разных метрик за разные периоды." },
-          insight:     { en: "A single date range picker for all charts limits the ability to analyze metrics over different time periods.", ru: "Единый выбор диапазона дат для всех графиков ограничивает возможность анализа метрик за разные периоды." },
-          decision:    { en: "Allow each widget to have its own independent date range.", ru: "Разрешить каждому виджету иметь собственный независимый диапазон дат." },
-        },
-        {
-          id:          3,
-          title:       { en: "Uniform colour scheme", ru: "Единая цветовая схема" },
-          description: { en: "All charts use the same colour scheme, making it difficult to distinguish which metrics are most important.", ru: "Все графики используют одну и ту же цветовую схему, что затрудняет выделение наиболее важных метрик." },
-          insight:     { en: "A uniform colour scheme can make it hard to prioritize metrics and identify key insights.", ru: "Единая цветовая схема может затруднить приоритизацию метрик и выделение ключевых инсайтов." },
-          decision:    { en: "Implement a 3-level widget prominence system to create a natural visual hierarchy.", ru: "Реализовать систему трёх уровней значимости виджетов для создания естественной иерархии." },
         },
       ],
     },
@@ -663,7 +613,7 @@ const analyticsDashboard: FullCaseStudy = {
   ],
   nextSteps: [
     { title: { en: "AI-generated plain-language summaries", ru: "AI-сводки на человеческом языке" }, description: { en: "Surface anomaly detection as readable insights: 'Conversion dropped 12% vs last week — likely driven by mobile traffic spike.'", ru: "Аномалии в виде читаемых инсайтов: «Конверсия упала на 12% по сравнению с прошлой неделей — вероятно, из-за мобильного трафика»." } },
-    { title: { en: "Cross-dashboard widget linking", ru: "Связь виджетов между бордами" }, description: { en: "Link any widget to a related deeper report. Reduces context-switching for analysts who need to drill down.", ru: "Связать любой виджет с более детальным отчётом. Снижает переключение контекста для аналитиков, которым нужно углубиться." } },
+    { title: { en: "Cross-dashboard widget linking", ru: "Связь виджетов между бордами" }, description: { en: "Link any widget to a related deeper report. Reduces context-switching for analysts who need to drill down.", ru: "Связать любой виджет с более детальны отчётом. Снижает переключение контекста для аналитиков, которым нужно углубиться." } },
     { title: { en: "Metric alert rules",              ru: "Правила уведомлений по метрикам" }, description: { en: "Let users configure threshold alerts per widget (e.g. 'notify me if drop-off exceeds 60%').", ru: "Позволить пользователям настраивать пороговые алерты для каждого виджета (например, «уведоми, если отток превысит 60%»)." } },
   ],
 };

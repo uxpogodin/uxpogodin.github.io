@@ -37,7 +37,61 @@ export function RootLayout() {
         : "Портфолио Юрия Погодина - продуктовый дизайнер, специализируюсь на сложных интерфейсах, SaaS-продуктах и мобильных приложениях.";
   }, [lang]);
 
-  // ── Eased smooth scroll (replaces Lenis) ────────────────────────────────────
+  // ── Yandex Metrika ───────────────────────────────────────────────────────────
+  useEffect(() => {
+    if (document.getElementById("ym-script")) return;
+
+    // Inline init
+    (function (m: Window & typeof globalThis, e: Document, t: string, r: string, i: string) {
+      type YmFn = ((...args: unknown[]) => void) & { a?: unknown[]; l?: number };
+      (m as unknown as Record<string, YmFn>)[i] =
+        (m as unknown as Record<string, YmFn>)[i] ||
+        function (...args: unknown[]) {
+          ((m as unknown as Record<string, YmFn>)[i].a =
+            (m as unknown as Record<string, YmFn>)[i].a || []).push(args);
+        };
+      (m as unknown as Record<string, YmFn>)[i].l = 1 * (new Date() as unknown as number);
+      for (let j = 0; j < e.scripts.length; j++) {
+        if (e.scripts[j].src === r) return;
+      }
+      const k = e.createElement(t) as HTMLScriptElement;
+      const a = e.getElementsByTagName(t)[0];
+      k.id    = "ym-script";
+      k.async = true;
+      k.src   = r;
+      a.parentNode!.insertBefore(k, a);
+    })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    (window as unknown as Record<string, (...args: unknown[]) => void>).ym?.(
+      107234852, "init",
+      {
+        ssr: true,
+        webvisor: true,
+        clickmap: true,
+        ecommerce: "dataLayer",
+        referrer: document.referrer,
+        url: location.href,
+        accurateTrackBounce: true,
+        trackLinks: true,
+      }
+    );
+
+    // noscript fallback
+    if (!document.getElementById("ym-noscript")) {
+      const ns  = document.createElement("noscript");
+      ns.id     = "ym-noscript";
+      const div = document.createElement("div");
+      const img = document.createElement("img");
+      img.src   = "https://mc.yandex.ru/watch/107234852";
+      img.style.cssText = "position:absolute;left:-9999px;";
+      img.alt   = "";
+      div.appendChild(img);
+      ns.appendChild(div);
+      document.body.insertBefore(ns, document.body.firstChild);
+    }
+  }, []);
+
+  // ── Eased smooth scroll (replaces Lenis) ────────────────────────��───────────
   const scrollTo = useCallback((id: string) => {
     const el = document.getElementById(id);
     if (!el) return;

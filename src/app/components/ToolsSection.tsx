@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { useId } from "react";
 import { motion } from "motion/react";
 import { preset, weight, leading, tracking, textColor, colors } from "../styles/typography";
@@ -199,11 +199,6 @@ const PATHS: Record<string, { path: string; hex: string }> = {
   googleforms: { hex: "673AB8", path: "M17.996 0H6.004C4.3 0 3 1.3 3 3.003v17.994C3 22.7 4.3 24 6.004 24h11.992C19.7 24 21 22.7 21 20.997V3.003C21 1.3 19.7 0 17.996 0zM9.5 19h-2v-2h2zm0-4h-2v-2h2zm0-4h-2V9h2zm7.5 8h-6v-2H17zm0-4h-6v-2H17zm0-4h-6V9H17zM8.5 7V4.5l3.5-3.5 3.5 3.5V7z" },
 };
 
-// ─── Touch detection (once, module-level) ────────────────────────────────────
-
-const IS_TOUCH =
-  typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
-
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface SITool { type: "si"; slug: string; name: string; hex: string; }
@@ -288,12 +283,9 @@ const RICH_ICONS: Record<string, (op: number) => React.ReactNode> = {
 // ─── ToolCard ───────────────────────────────────────────────────────���─────────
 
 function ToolCard({ tool, delay }: { tool: ToolDef; delay: number }) {
-  const [hovered, setHovered] = useState(false);
   const hex = tool.hex;
   const rgb = hexToRgb(hex);
-  // На тач-устройствах hover не работает — иконки всегда на полной яркости
-  const active = IS_TOUCH || hovered;
-  const op  = active ? 1 : 0.65;
+  const op  = 1;
 
   const renderIcon = () => {
     if (tool.type === "si") {
@@ -302,7 +294,7 @@ function ToolCard({ tool, delay }: { tool: ToolDef; delay: number }) {
       // Plain simple-icon with brand fill
       return (
         <svg role="img" viewBox="0 0 24 24" width="26" height="26"
-          style={{ fill: `#${hex}`, opacity: op, transition: "opacity 0.25s", flexShrink: 0 }}>
+          style={{ fill: `#${hex}`, opacity: op, flexShrink: 0 }}>
           <path d={PATHS[tool.slug]?.path ?? ""} />
         </svg>
       );
@@ -312,8 +304,7 @@ function ToolCard({ tool, delay }: { tool: ToolDef; delay: number }) {
       <div style={{
         width: "26px", height: "26px", borderRadius: "7px",
         display: "flex", alignItems: "center", justifyContent: "center",
-        background: hovered ? `#${hex}` : `rgba(${rgb}, 0.55)`,
-        transition: "background 0.25s",
+        background: `rgba(${rgb}, 0.55)`,
       }}>
         <span style={{
           fontFamily: "'Inter', sans-serif", fontSize: "9px",
@@ -332,25 +323,22 @@ function ToolCard({ tool, delay }: { tool: ToolDef; delay: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
-      whileTap={{ scale: 0.93 }}
       className="tool-card"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       style={{
         display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center",
         gap: "10px", padding: "18px 14px",
         borderRadius: "14px", width: "88px",
-        border: active ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(255,255,255,0.07)",
-        background: active ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.02)",
-        cursor: "default", transition: "border 0.25s, background 0.25s", flexShrink: 0,
+        border: "1px solid rgba(255,255,255,0.07)",
+        background: "rgba(255,255,255,0.02)",
+        cursor: "default", flexShrink: 0,
       }}
     >
       {renderIcon()}
       <span style={{
         ...preset.micro, fontWeight: weight.regular,
-        color: active ? textColor.secondary : textColor.muted,
-        textAlign: "center", whiteSpace: "nowrap", transition: "color 0.25s",
+        color: textColor.secondary,
+        textAlign: "center", whiteSpace: "nowrap",
       }}>
         {tool.name}
       </span>
@@ -387,7 +375,7 @@ export function ToolsSection({ lang }: { lang: "en" | "ru" }) {
         <motion.h2
           initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-          style={{ ...preset.h2, fontWeight: weight.light, color: textColor.secondary, margin: "0 0 56px", maxWidth: "600px" }}
+          style={{ ...preset.h2, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 56px", maxWidth: "600px" }}
         >
           {t.sub}
         </motion.h2>

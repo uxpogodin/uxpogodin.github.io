@@ -39,59 +39,46 @@ export function RootLayout() {
 
   // ── Yandex Metrika ───────────────────────────────────────────────────────────
   useEffect(() => {
-    if (document.getElementById("ym-script")) return;
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    const w = window as any;
 
-    // Inline init
-    (function (m: Window & typeof globalThis, e: Document, t: string, r: string, i: string) {
-      type YmFn = ((...args: unknown[]) => void) & { a?: unknown[]; l?: number };
-      (m as unknown as Record<string, YmFn>)[i] =
-        (m as unknown as Record<string, YmFn>)[i] ||
-        function (...args: unknown[]) {
-          ((m as unknown as Record<string, YmFn>)[i].a =
-            (m as unknown as Record<string, YmFn>)[i].a || []).push(args);
-        };
-      (m as unknown as Record<string, YmFn>)[i].l = 1 * (new Date() as unknown as number);
-      for (let j = 0; j < e.scripts.length; j++) {
-        if (e.scripts[j].src === r) return;
-      }
-      const k = e.createElement(t) as HTMLScriptElement;
-      const a = e.getElementsByTagName(t)[0];
-      k.id    = "ym-script";
-      k.async = true;
-      k.src   = r;
-      a.parentNode!.insertBefore(k, a);
-    })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    // Already initialised (HMR / strict-mode double-invoke guard)
+    if (w.__ym_inited) return;
+    w.__ym_inited = true;
 
-    (window as unknown as Record<string, (...args: unknown[]) => void>).ym?.(
-      107234852, "init",
-      {
-        ssr: true,
-        webvisor: true,
-        clickmap: true,
-        ecommerce: "dataLayer",
-        referrer: document.referrer,
-        url: location.href,
-        accurateTrackBounce: true,
-        trackLinks: true,
-      }
-    );
+    // Step 1: create the queue function BEFORE the script loads
+    w.ym = w.ym || function () {
+      (w.ym.a = w.ym.a || []).push(arguments);
+    };
+    w.ym.l = +new Date();
 
-    // noscript fallback
-    if (!document.getElementById("ym-noscript")) {
-      const ns  = document.createElement("noscript");
-      ns.id     = "ym-noscript";
-      const div = document.createElement("div");
-      const img = document.createElement("img");
-      img.src   = "https://mc.yandex.ru/watch/107234852";
-      img.style.cssText = "position:absolute;left:-9999px;";
-      img.alt   = "";
-      div.appendChild(img);
-      ns.appendChild(div);
-      document.body.insertBefore(ns, document.body.firstChild);
-    }
+    // Step 2: inject the script
+    const script   = document.createElement("script");
+    script.async   = true;
+    script.src     = "https://mc.yandex.ru/metrika/tag.js";
+    const firstScript = document.getElementsByTagName("script")[0];
+    firstScript.parentNode!.insertBefore(script, firstScript);
+
+    // Step 3: enqueue init (runs immediately if script is already loaded,
+    //         otherwise gets replayed when tag.js initialises)
+    w.ym(107234852, "init", {
+      webvisor:           true,
+      clickmap:           true,
+      ecommerce:          "dataLayer",
+      accurateTrackBounce: true,
+      trackLinks:         true,
+    });
+
+    // noscript pixel
+    const ns = document.createElement("noscript");
+    ns.innerHTML =
+      '<div><img src="https://mc.yandex.ru/watch/107234852" ' +
+      'style="position:absolute;left:-9999px;" alt="" /></div>';
+    document.body.insertBefore(ns, document.body.firstChild);
+    /* eslint-enable @typescript-eslint/no-explicit-any */
   }, []);
 
-  // ── Eased smooth scroll (replaces Lenis) ────────────────────────��───────────
+  // ── Eased smooth scroll (replaces Lenis) ───────────────────────────────────
   const scrollTo = useCallback((id: string) => {
     const el = document.getElementById(id);
     if (!el) return;

@@ -161,45 +161,6 @@ export function Header({ lang, setLang, scrollTo }: HeaderProps) {
         </a>
 
         <div className="flex items-center gap-3">
-          {/* Language switcher */}
-          <div
-            className="flex items-center rounded-full"
-            style={{ border: "1px solid rgba(255,255,255,0.1)", padding: "3px", gap: "2px" }}
-          >
-            {(["en", "ru"] as const).map((l) => (
-              <motion.button
-                key={l}
-                onClick={() => setLang(l)}
-                whileTap={{ scale: 0.92 }}
-                style={{
-                  ...preset.nano,
-                  fontWeight: weight.medium,
-                  padding: "4px 10px",
-                  borderRadius: "20px",
-                  border: "none",
-                  cursor: "pointer",
-                  transition: "background 0.2s, color 0.2s",
-                  background: lang === l ? "rgba(255,255,255,0.12)" : "transparent",
-                  color: lang === l ? textColor.primary : textColor.muted,
-                }}
-                onMouseEnter={(e) => {
-                  if (lang !== l) {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";
-                    (e.currentTarget as HTMLElement).style.color = textColor.secondary;
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (lang !== l) {
-                    (e.currentTarget as HTMLElement).style.background = "transparent";
-                    (e.currentTarget as HTMLElement).style.color = textColor.muted;
-                  }
-                }}
-              >
-                {l.toUpperCase()}
-              </motion.button>
-            ))}
-          </div>
-
           {/* Mentoring */}
           <motion.button
             onClick={(e) => {
@@ -296,6 +257,45 @@ export function Header({ lang, setLang, scrollTo }: HeaderProps) {
             <Download size={11} strokeWidth={2} />
             {lang === "en" ? "CV" : "Резюме"}
           </motion.a>
+
+          {/* Language switcher */}
+          <div
+            className="flex items-center rounded-full"
+            style={{ border: "1px solid rgba(255,255,255,0.1)", padding: "3px", gap: "2px" }}
+          >
+            {(["en", "ru"] as const).map((l) => (
+              <motion.button
+                key={l}
+                onClick={() => setLang(l)}
+                whileTap={{ scale: 0.92 }}
+                style={{
+                  ...preset.nano,
+                  fontWeight: weight.medium,
+                  padding: "4px 10px",
+                  borderRadius: "20px",
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "background 0.2s, color 0.2s",
+                  background: lang === l ? "rgba(255,255,255,0.12)" : "transparent",
+                  color: lang === l ? textColor.primary : textColor.muted,
+                }}
+                onMouseEnter={(e) => {
+                  if (lang !== l) {
+                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";
+                    (e.currentTarget as HTMLElement).style.color = textColor.secondary;
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (lang !== l) {
+                    (e.currentTarget as HTMLElement).style.background = "transparent";
+                    (e.currentTarget as HTMLElement).style.color = textColor.muted;
+                  }
+                }}
+              >
+                {l.toUpperCase()}
+              </motion.button>
+            ))}
+          </div>
 
           {/* Burger */}
           <motion.button

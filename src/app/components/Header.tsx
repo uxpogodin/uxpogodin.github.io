@@ -270,8 +270,8 @@ export function Header({ lang, setLang, scrollTo }: HeaderProps) {
           {/* CV */}
           <motion.a
             href={lang === "en"
-              ? "https://drive.google.com/file/d/1Sf8_VMD6EVTwFpV4XVAPuLQ71hvoHc8H/view?usp=sharing"
-              : "https://drive.google.com/file/d/1AcPIYCYC9syE00OTbp07JOu-x_Zl2xnq/view?usp=sharing"}
+              ? "https://drive.google.com/file/d/19vGh8UGnEx4O-T313POr3E17EMf4UOhg/view?usp=drive_link"
+              : "https://drive.google.com/file/d/1CUILEj03vkG-ckPa68Mndxj_c4q3CmKT/view?usp=sharing"}
             target="_blank"
             rel="noopener noreferrer"
             whileTap={{ scale: 0.95 }}

@@ -1,9 +1,19 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { Download } from "lucide-react";
+import { Download, CalendarDays } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import photo from "figma:asset/489ad1a58e0c1187c1b7b774593f475800902a82.png";
 import { preset, weight, tracking, textColor, colors, ctaButton } from "../styles/typography";
+
+declare global {
+  interface Window {
+    Calendly?: {
+      initPopupWidget: (opts: { url: string }) => void;
+    };
+  }
+}
+
+const CALENDLY_URL = "https://calendly.com/ux-pogodin/30min";
 
 interface HeaderProps {
   lang: "en" | "ru";
@@ -190,6 +200,36 @@ export function Header({ lang, setLang, scrollTo }: HeaderProps) {
             ))}
           </div>
 
+          {/* Mentoring */}
+          <motion.button
+            onClick={(e) => {
+              e.preventDefault();
+              window.Calendly?.initPopupWidget({ url: CALENDLY_URL });
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="header-mentoring flex items-center gap-1.5 rounded-full px-4 py-2"
+            style={{
+              ...preset.micro,
+              fontWeight: weight.regular,
+              color: textColor.secondary,
+              border: "1px solid rgba(255,255,255,0.12)",
+              background: "transparent",
+              cursor: "pointer",
+              transition: "border-color 0.2s, color 0.2s",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.3)";
+              (e.currentTarget as HTMLElement).style.color       = textColor.primary;
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.12)";
+              (e.currentTarget as HTMLElement).style.color       = textColor.secondary;
+            }}
+          >
+            <CalendarDays size={11} strokeWidth={2} />
+            {lang === "en" ? "Mentoring" : "Менторство"}
+          </motion.button>
+
           {/* Telegram CTA */}
           <motion.a
             href="https://t.me/pogodinyury"
@@ -353,6 +393,7 @@ export function Header({ lang, setLang, scrollTo }: HeaderProps) {
       <style>{`
         @media (max-width: 600px) {
           .header-cv { display: none !important; }
+          .header-mentoring { display: none !important; }
         }
       `}</style>
     </>

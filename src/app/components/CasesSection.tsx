@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { preset, weight, leading, tracking, textColor, glow, colors } from "../styles/typography";
 import { CASES } from "../data/cases";
 import type { CaseData, Metric } from "../data/cases";
-import paymentMockupImg    from "figma:asset/c3bc908ca6bf442f6af86f373e953f067176ce3c.png";
+import paymentMockupImg    from "figma:asset/8c3e23dbc376e58c1f3059b97cb74fd36316c18a.png";
 import analyticsMockupImg  from "figma:asset/409be3f8aa2bc996a3cd04a8e5ec279f5459ec20.png";
 
 // ─── Tag pill — единый компонент для всех карточек ──────────────────────────
@@ -284,30 +284,32 @@ function AnalyticsPhoneMockup({ hovered }: { hovered: boolean }) {
 
 // ─── Case Study Card ────────────────────────────────────────────────────────
 
-function CaseCard({ data, lang, index }: { data: CaseData; lang: "en" | "ru"; index: number }) {
-  const [hovered, setHovered] = useState(false);
-  const cardRef = useRef<HTMLElement>(null);
+// Motion variants — propagated from parent article to children
+// No React state needed → no re-renders on hover → no image flicker
+const mockupFloatVariants = {
+  hover: { y: -7 },
+} as const;
 
+const ctaSlideVariants = {
+  hover: { x: 4 },
+} as const;
+
+function CaseCard({ data, lang, index }: { data: CaseData; lang: "en" | "ru"; index: number }) {
   return (
     <motion.article
-      ref={cardRef as React.RefObject<HTMLElement>}
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.7, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      whileHover="hover"
       whileTap={{ scale: 0.985 }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       className="case-card"
       style={{
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
         borderRadius: "20px",
-        border: `1px solid ${hovered ? "rgba(255,255,255,0.11)" : "rgba(255,255,255,0.07)"}`,
-        background: hovered ? "rgba(255,255,255,0.025)" : "rgba(255,255,255,0.015)",
         overflow: "hidden",
         cursor: "pointer",
-        transition: "border-color 0.3s, background 0.3s",
         minHeight: "360px",
       }}
     >
@@ -334,13 +336,15 @@ function CaseCard({ data, lang, index }: { data: CaseData; lang: "en" | "ru"; in
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "20px", paddingTop: "32px" }}>
           <div style={{ height: "1px", background: "rgba(255,255,255,0.06)" }} />
-          <motion.div animate={{ x: hovered ? 4 : 0 }} transition={{ duration: 0.22 }}
+          <motion.div
+            variants={ctaSlideVariants}
+            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
             style={{ display: "flex", alignItems: "center", gap: "5px" }}
           >
-            <span style={{ ...preset.micro, fontWeight: weight.regular, color: hovered ? textColor.accent : textColor.muted, transition: "color 0.2s" }}>
+            <span className="case-cta-label" style={{ ...preset.micro, fontWeight: weight.regular }}>
               {lang === "en" ? "View case study" : "Смотреть кейс"}
             </span>
-            <ArrowUpRight size={12} color={hovered ? textColor.accent : textColor.muted} style={{ transition: "color 0.2s", flexShrink: 0 }} />
+            <ArrowUpRight size={12} className="case-cta-icon" style={{ flexShrink: 0 }} />
           </motion.div>
         </div>
       </div>
@@ -359,8 +363,8 @@ function CaseCard({ data, lang, index }: { data: CaseData; lang: "en" | "ru"; in
           pointerEvents: "none",
         }} />
         <motion.div
-          animate={{ y: hovered ? -6 : 0 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          variants={mockupFloatVariants}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           style={{
             width: "220px",
             aspectRatio: "375 / 812",
@@ -546,6 +550,32 @@ export function CasesSection({ lang }: { lang: "en" | "ru" }) {
       </div>
 
       <style>{`
+        /* ── Card base: border + bg handled by CSS, not React state ── */
+        .case-card {
+          border: 1px solid rgba(255,255,255,0.07);
+          background: rgba(255,255,255,0.015);
+          transition: border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+        }
+        .case-card:hover {
+          border-color: rgba(255,255,255,0.12);
+          background: rgba(255,255,255,0.028);
+          box-shadow: 0 8px 40px rgba(0,0,0,0.28);
+        }
+
+        /* ── CTA text + icon color via CSS currentColor ── */
+        .case-cta-label {
+          color: #6E7F94;
+          transition: color 0.22s ease;
+        }
+        .case-cta-icon {
+          color: #6E7F94;
+          transition: color 0.22s ease;
+        }
+        .case-card:hover .case-cta-label,
+        .case-card:hover .case-cta-icon {
+          color: #818cf8;
+        }
+
         @media (max-width: 640px) {
           .case-card {
             grid-template-columns: 1fr !important;

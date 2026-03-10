@@ -2668,35 +2668,17 @@ export function CasePage() {
             <div className="section-inner">
               <SectionLabel num="04" label={lang === "en" ? "Timeline" : "Таймлайн"} />
 
-              {/* Header */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "40px", alignItems: "start", marginBottom: "56px" }}>
-                <motion.div {...inView}>
-                  <h2 style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 16px" }}>
-                    {lang === "en" ? "2 months, end to end" : "2 месяца от нуля до запуска"}
-                  </h2>
-                  <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose, maxWidth: "520px" }}>
-                    {lang === "en"
-                      ? "8 sequential phases, strict deadline. Research and wireframe first, then an investor-ready prototype, followed by iterative design and development of each content section."
-                      : "8 последовательных фаз, жёсткий дедлайн. Сначала исследование и вайрфрейм, затем прототип для инвесторов, после - итеративный дизайн и разработка каждого раздела."}
-                  </p>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.94 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, ease }}
-                  style={{ padding: "24px 28px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "20px", textAlign: "center", flexShrink: 0 }}
-                >
-                  <div style={{ ...preset.display, fontWeight: weight.light, color: textColor.primary, lineHeight: 1 }}>2</div>
-                  <div style={{ ...preset.small, color: textColor.muted, marginTop: "6px" }}>
-                    {lang === "en" ? "months" : "месяца"}
-                  </div>
-                  <div style={{ width: "28px", height: "1px", background: "rgba(255,255,255,0.12)", margin: "14px auto" }} />
-                  <div style={{ ...preset.nano, color: textColor.muted, letterSpacing: tracking.wider, textTransform: "uppercase" as const }}>
-                    {lang === "en" ? "8 phases" : "8 фаз"}
-                  </div>
-                </motion.div>
-              </div>
+              {/* Header — full width, no stats widget */}
+              <motion.div {...inView} style={{ marginBottom: "48px" }}>
+                <h2 style={{ ...preset.h1, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 16px" }}>
+                  {lang === "en" ? "2 months, end to end" : "2 месяца от нуля до запуска"}
+                </h2>
+                <p style={{ ...preset.body, color: textColor.secondary, margin: 0, lineHeight: leading.loose, maxWidth: "520px" }}>
+                  {lang === "en"
+                    ? "8 sequential phases, strict deadline. Research and wireframe first, then an investor-ready prototype, followed by iterative design and development of each content section."
+                    : "8 последовательных фаз, жёсткий дедлайн. Сначала исследование и вайрфрейм, затем прототип для инвесторов, после — итеративный дизайн и разработка каждого раздела."}
+                </p>
+              </motion.div>
 
               {/* Gantt bar */}
               <motion.div
@@ -2718,62 +2700,65 @@ export function CasePage() {
                   </span>
                 </div>
                 <div style={{ position: "relative" }}>
-                  <div style={{ display: "flex", height: "10px", borderRadius: "8px", overflow: "hidden", gap: "3px" }}>
+                  <div style={{ display: "flex", height: "6px", borderRadius: "6px", overflow: "hidden", gap: "2px" }}>
                     {VED_TIMELINE.map(p => (
-                      <div key={p.num} style={{ flex: p.days, background: p.color }} />
+                      <div key={p.num} style={{ flex: p.days, background: "rgba(255,255,255,0.12)" }} />
                     ))}
                   </div>
-                  <div style={{ position: "absolute", top: "-4px", left: "50%", transform: "translateX(-50%)", width: "1px", height: "18px", background: "rgba(255,255,255,0.18)" }} />
+                  <div style={{ position: "absolute", top: "-4px", left: "50%", transform: "translateX(-50%)", width: "1px", height: "14px", background: "rgba(255,255,255,0.18)" }} />
                 </div>
               </motion.div>
 
-              {/* Phase cards */}
-              <div className="timeline-phase-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "16px" }}>
+              {/* Phase list — clean tabulated rows */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease }}
+                style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+              >
                 {VED_TIMELINE.map((phase, i) => (
                   <motion.div
                     key={phase.num}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.06, ease }}
+                    transition={{ duration: 0.4, delay: i * 0.04, ease }}
+                    className="tl-row"
                     style={{
-                      padding: "20px",
-                      background: `${phase.color}0d`,
-                      border: "1px solid rgba(255,255,255,0.06)",
-                      borderTop: `2px solid ${phase.color}`,
-                      borderRadius: "14px",
+                      display: "grid",
+                      gridTemplateColumns: "36px 1fr auto",
+                      alignItems: "baseline",
+                      gap: "16px",
+                      padding: "14px 0",
+                      borderBottom: "1px solid rgba(255,255,255,0.04)",
                     }}
                   >
-                    <div style={{ ...preset.nano, color: phase.color, letterSpacing: tracking.wider, marginBottom: "10px" }}>{phase.num}</div>
-                    <div style={{ ...preset.small, fontWeight: weight.medium, color: textColor.primary, margin: "0 0 12px", lineHeight: leading.snug }}>
-                      {lang === "en" ? phase.en : phase.ru}
-                    </div>
-                    <div style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      padding: "3px 10px",
-                      borderRadius: "20px",
-                      background: `${phase.color}22`,
-                      border: `1px solid ${phase.color}44`,
-                    }}>
-                      <span style={{ ...preset.nano, color: phase.color, letterSpacing: tracking.wide }}>
-                        {lang === "en" ? phase.durEn : phase.durRu}
+                    {/* Phase number */}
+                    <span style={{ ...preset.nano, color: textColor.muted, letterSpacing: tracking.wider }}>
+                      {phase.num}
+                    </span>
+
+                    {/* Phase name + optional note */}
+                    <div>
+                      <span style={{ ...preset.small, fontWeight: weight.medium, color: textColor.primary, lineHeight: leading.snug }}>
+                        {lang === "en" ? phase.en : phase.ru}
                       </span>
+                      {phase.noteEn && (
+                        <div style={{ ...preset.nano, color: textColor.muted, marginTop: "3px", lineHeight: leading.loose }}>
+                          {lang === "en" ? phase.noteEn : phase.noteRu}
+                        </div>
+                      )}
                     </div>
-                    {phase.noteEn && (
-                      <div style={{ ...preset.nano, color: textColor.muted, lineHeight: leading.loose, marginTop: "12px", fontStyle: "italic" }}>
-                        {lang === "en" ? phase.noteEn : phase.noteRu}
-                      </div>
-                    )}
+
+                    {/* Duration */}
+                    <span style={{ ...preset.nano, color: textColor.muted, whiteSpace: "nowrap" as const, letterSpacing: tracking.wide }}>
+                      {lang === "en" ? phase.durEn : phase.durRu}
+                    </span>
                   </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
-            <style>{`
-              @media(max-width:1024px){ #ved-timeline .timeline-phase-grid { grid-template-columns: repeat(4, 1fr) !important; } }
-              @media(max-width:900px){  #ved-timeline .timeline-phase-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-              @media(max-width:480px){  #ved-timeline .timeline-phase-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; } }
-            `}</style>
           </Section>
 
           {/* Final Design showcases */}
@@ -3121,7 +3106,7 @@ export function CasePage() {
         @media (max-width: 768px) {
           /* Hero: stack phone below text */
           .hero-grid { display: block !important; }
-          .hero-mockup-col { position: static !important; padding-bottom: 48px !important; padding-top: 0 !important; }
+          .hero-mockup-col { position: static !important; padding-top: 60px !important; padding-bottom: 48px !important; }
 
           /* Two-column section layouts */
           #overview > div > div,

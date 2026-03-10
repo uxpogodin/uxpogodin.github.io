@@ -1,7 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { ArrowUpRight, Copy, Check } from "lucide-react";
+import { ArrowUpRight, Copy, Check, CalendarDays } from "lucide-react";
 import { preset, weight, leading, tracking, textColor, glow, colors } from "../styles/typography";
+
+// Calendly global type
+declare global {
+  interface Window {
+    Calendly?: {
+      initPopupWidget: (opts: { url: string }) => void;
+    };
+  }
+}
+
+const CALENDLY_URL = "https://calendly.com/ux-pogodin/30min";
 
 const REAL_EMAIL   = "ux.pogodin@gmail.com";
 const MASKED_EMAIL = "ux.p****n@gmail.com";
@@ -16,6 +27,7 @@ const CONTENT = {
     copy: "© 2026 Pogodin",
     vibeCoded: "Made with love and Claude Code",
     cta: "Write me",
+    mentoring: "Mentoring",
   },
   ru: {
     label: "Контакты",
@@ -26,6 +38,7 @@ const CONTENT = {
     copy: "© 2026 Погодин",
     vibeCoded: "Сделано с любовью и Claude Code",
     cta: "Написать",
+    mentoring: "Менторство",
   },
 };
 
@@ -33,6 +46,23 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export function ContactSection({ lang }: { lang: "en" | "ru" }) {
   const t = CONTENT[lang];
+
+  // Load Calendly assets once
+  useEffect(() => {
+    if (document.getElementById("calendly-css")) return;
+
+    const link = document.createElement("link");
+    link.id = "calendly-css";
+    link.rel = "stylesheet";
+    link.href = "https://assets.calendly.com/assets/external/widget.css";
+    document.head.appendChild(link);
+
+    const script = document.createElement("script");
+    script.id = "calendly-js";
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
 
   return (
     <section
@@ -73,12 +103,13 @@ export function ContactSection({ lang }: { lang: "en" | "ru" }) {
             paddingTop: "28px",
           }}
         >
-          <div style={{ display: "flex", gap: "28px" }}>
+          <div style={{ display: "flex", gap: "28px", alignItems: "center" }}>
             {t.links.map((link) => (
               <SocialLink key={link.label} {...link} />
             ))}
+            <MentoringButton label={t.mentoring} />
           </div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px" }}>
+          <div className="contact-bottom-copy" style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px" }}>
             <span style={{
               ...preset.small,
               color: textColor.muted,
@@ -106,12 +137,21 @@ export function ContactSection({ lang }: { lang: "en" | "ru" }) {
             gap: 12px !important;
           }
           .contact-sub {
-            text-align: left !important;
+            text-align: center !important;
             max-width: 100% !important;
           }
           .contact-bottom {
             flex-direction: column !important;
-            align-items: flex-start !important;
+            align-items: center !important;
+          }
+          .contact-bottom-copy {
+            align-items: center !important;
+          }
+          .contact-email-btn {
+            text-align: center !important;
+          }
+          .contact-email-btn .contact-email-label {
+            justify-content: center !important;
           }
         }
       `}</style>
@@ -151,12 +191,13 @@ function EmailHero({ cta }: { cta: string }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       whileTap={{ scale: 0.995 }}
+      className="contact-email-btn"
       style={{
         display: "block",
         width: "100%",
         background: "none",
         border: "none",
-        padding: "0",
+        padding: 0,
         cursor: "pointer",
         textAlign: "left",
         position: "relative",
@@ -179,6 +220,7 @@ function EmailHero({ cta }: { cta: string }) {
       <motion.div
         animate={{ opacity: hovered ? 1 : 0.35, x: hovered ? 4 : 0 }}
         transition={{ duration: 0.3, ease }}
+        className="contact-email-label"
         style={{
           display: "flex",
           alignItems: "center",
@@ -321,5 +363,48 @@ function SocialLink({ label, href }: { label: string; href: string }) {
         <ArrowUpRight size={13} strokeWidth={1.5} />
       </motion.span>
     </motion.a>
+  );
+}
+
+// ── Mentoring button ──────────────────────────────────────────────────────────
+
+function MentoringButton({ label }: { label: string }) {
+  const [hovered, setHovered] = useState(false);
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.Calendly?.initPopupWidget({ url: CALENDLY_URL });
+  };
+
+  return (
+    <motion.button
+      onClick={handleClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      whileTap={{ scale: 0.93 }}
+      style={{
+        ...preset.small,
+        fontWeight: weight.regular,
+        color: hovered ? textColor.primary : textColor.muted,
+        textDecoration: "none",
+        transition: "color 0.25s ease",
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "4px",
+        cursor: "pointer",
+        background: "none",
+        border: "none",
+        padding: 0,
+      }}
+    >
+      {label}
+      <motion.span
+        animate={{ opacity: hovered ? 1 : 0, x: hovered ? 0 : -4 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        style={{ display: "flex" }}
+      >
+        <CalendarDays size={13} strokeWidth={1.5} />
+      </motion.span>
+    </motion.button>
   );
 }

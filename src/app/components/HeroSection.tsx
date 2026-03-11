@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import photo from "figma:asset/489ad1a58e0c1187c1b7b774593f475800902a82.png";
 import heroPhoto from "figma:asset/8a2e0252a820a5aef732d517a45893117b93e89f.png";
 import { preset, weight, tracking, textColor, glow, colors, ctaButton } from "../styles/typography";
+import { useTheme } from "../context/ThemeContext";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },

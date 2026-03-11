@@ -20,7 +20,7 @@ const WORDS: HighlightedWord[] = [
   },
   {
     text:    { en: "explore",      ru: "ищу" },
-    tooltip: { en: "Sketch widely, analyse competitors, consider edge cases. Quantity before quality.", ru: "Генерир��ю много идей, изучаю конкурентов, прорабатываю нестандартные сценарии." },
+    tooltip: { en: "Sketch widely, analyse competitors, consider edge cases. Quantity before quality.", ru: "Генерирю много идей, изучаю конкурентов, прорабатываю нестандартные сценарии." },
   },
   {
     text:    { en: "prototype",    ru: "прототипирую" },
@@ -67,6 +67,16 @@ function ProcessFlowCanvas() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    // Adjust opacity of canvas elements per theme
+    const isDark = true;
+    const edgeOpacity    = isDark ? 0.13 : 0.28;
+    const feedbackOpacity= isDark ? 0.08 : 0.18;
+    const nodeHaloOp     = isDark ? 0.20 : 0.35;
+    const nodeCoreOp     = isDark ? 0.62 : 0.85;
+    const particleOp1    = isDark ? 0.10 : 0.20;
+    const particleOp2    = isDark ? 0.25 : 0.45;
+    const particleCoreOp = isDark ? 0.90 : 1.00;
 
     // Normalised node positions [x, y] (0‥1)
     const NODES: [number, number][] = [
@@ -404,19 +414,21 @@ function TooltipWord({
               display: "block",
             }}
           >
-            <span style={{
-              position: "absolute",
-              bottom: "-5px",
-              left: "50%",
-              marginLeft: "-4px",
-              width: "8px",
-              height: "8px",
-              background: "#0f1629",
-              borderRight: "1px solid rgba(129,140,248,0.2)",
-              borderBottom: "1px solid rgba(129,140,248,0.2)",
-              transform: "rotate(45deg)",
-              display: "block",
-            }} />
+            <span
+              style={{
+                position: "absolute",
+                bottom: "-5px",
+                left: "50%",
+                marginLeft: "-4px",
+                width: "8px",
+                height: "8px",
+                background: "#0f1629",
+                borderRight: "1px solid rgba(129,140,248,0.2)",
+                borderBottom: "1px solid rgba(129,140,248,0.2)",
+                transform: "rotate(45deg)",
+                display: "block",
+              }}
+            />
             <span style={{
               ...preset.small,
               fontWeight: weight.light,
